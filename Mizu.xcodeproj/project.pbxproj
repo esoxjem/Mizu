@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		60FDBDEB23A92B79007F7C29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FDBDEA23A92B79007F7C29 /* AppDelegate.swift */; };
-		60FDBDED23A92B79007F7C29 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FDBDEC23A92B79007F7C29 /* ViewController.swift */; };
+		60FDBDED23A92B79007F7C29 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FDBDEC23A92B79007F7C29 /* PreferencesViewController.swift */; };
 		60FDBDEF23A92B7A007F7C29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60FDBDEE23A92B7A007F7C29 /* Assets.xcassets */; };
 		60FDBDF223A92B7A007F7C29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60FDBDF023A92B7A007F7C29 /* Main.storyboard */; };
 /* End PBXBuildFile section */
@@ -16,7 +16,7 @@
 /* Begin PBXFileReference section */
 		60FDBDE723A92B79007F7C29 /* Mizu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mizu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60FDBDEA23A92B79007F7C29 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		60FDBDEC23A92B79007F7C29 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		60FDBDEC23A92B79007F7C29 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		60FDBDEE23A92B7A007F7C29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		60FDBDF123A92B7A007F7C29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		60FDBDF323A92B7A007F7C29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -34,6 +34,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		60EE704D23A93BDC00C3BBF9 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				60FDBDEC23A92B79007F7C29 /* PreferencesViewController.swift */,
+				60FDBDF023A92B7A007F7C29 /* Main.storyboard */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
+		60EE704E23A93BEB00C3BBF9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				60FDBDEE23A92B7A007F7C29 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		60EE705123A94BD000C3BBF9 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				60FDBDF423A92B7A007F7C29 /* Mizu.entitlements */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
 		60FDBDDE23A92B79007F7C29 = {
 			isa = PBXGroup;
 			children = (
@@ -53,12 +78,11 @@
 		60FDBDE923A92B79007F7C29 /* Mizu */ = {
 			isa = PBXGroup;
 			children = (
+				60EE705123A94BD000C3BBF9 /* Misc */,
+				60EE704E23A93BEB00C3BBF9 /* Resources */,
+				60EE704D23A93BDC00C3BBF9 /* Preferences */,
 				60FDBDEA23A92B79007F7C29 /* AppDelegate.swift */,
-				60FDBDEC23A92B79007F7C29 /* ViewController.swift */,
-				60FDBDEE23A92B7A007F7C29 /* Assets.xcassets */,
-				60FDBDF023A92B7A007F7C29 /* Main.storyboard */,
 				60FDBDF323A92B7A007F7C29 /* Info.plist */,
-				60FDBDF423A92B7A007F7C29 /* Mizu.entitlements */,
 			);
 			path = Mizu;
 			sourceTree = "<group>";
@@ -133,7 +157,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60FDBDED23A92B79007F7C29 /* ViewController.swift in Sources */,
+				60FDBDED23A92B79007F7C29 /* PreferencesViewController.swift in Sources */,
 				60FDBDEB23A92B79007F7C29 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
