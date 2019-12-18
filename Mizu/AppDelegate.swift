@@ -35,10 +35,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		debugPrint("icon clicked")
 	}
 
+
 	private func initMenu() {
 		let menu = NSMenu()
 
-		menu.addItem(NSMenuItem(title: "Preferences", action: #selector(preferencesClicked(_:)), keyEquivalent: ""))
+		menu.addItem(NSMenuItem(title: "Preferences", action: #selector(togglePopover), keyEquivalent: ""))
 		menu.addItem(NSMenuItem.separator())
 		menu.addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: ""))
 
@@ -49,9 +50,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		popover.contentViewController = PreferencesViewController.newInstance()
 	}
 
-	@objc private func preferencesClicked(_ sender: Any?) {
+	@objc private func togglePopover() {
 		if popover.isShown {
-			closePopover(sender)
+			closePopover()
 		} else {
 			showPopover()
 		}
@@ -63,8 +64,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 	}
 
-	func closePopover(_ sender: Any?) {
-		popover.performClose(sender)
+	func closePopover() {
+		popover.performClose(nil)
 	}
 
 }

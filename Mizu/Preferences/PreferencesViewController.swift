@@ -27,15 +27,15 @@ class PreferencesViewController: NSViewController {
 }
 
 extension PreferencesViewController {
-	// MARK: Storyboard instantiation
-	static func newInstance() -> PreferencesViewController {
 
+	static func newInstance() -> PreferencesViewController {
 		let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
 		let identifier = NSStoryboard.SceneIdentifier("PreferencesViewController")
-		guard storyboard.instantiateController(withIdentifier: identifier) is PreferencesViewController else {
-			fatalError("Why cant i find PreferencesViewController? - Check Main.storyboard")
+		guard let vc = storyboard.instantiateController(withIdentifier: identifier) as? PreferencesViewController else {
+			fatalError("error loading storyboard")
 		}
-		return PreferencesViewController()
+
+		return vc
 	}
 }
 
