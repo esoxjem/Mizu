@@ -2,23 +2,12 @@ import Cocoa
 
 final class MenuBar: NSObject {
 	
+	private let presenter = MenuBarPresenter()
 	private let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
-	private var timer: Timer?
-	
-	var eventMonitor: EventMonitor?
 	
 	func launch() {
-		monitorOutsideClicks()
 		initStatusBar()
-		startReminderTimer()
-	}
-	
-	private func monitorOutsideClicks() {
-		eventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [weak self] event in
-			if let strongSelf = self {
-				strongSelf.eventMonitor?.stop()
-			}
-		}
+		presenter.launch()
 	}
 	
 	private func initStatusBar() {
@@ -32,7 +21,7 @@ final class MenuBar: NSObject {
 	private func createMenu() -> NSMenu {
 		let menu = NSMenu()
 		let item = NSMenuItem(title: "Preferences",
-							  action: #selector(showPopover(_:)),
+							  action: #selector(prefClicked(_:)),
 							  keyEquivalent: "")
 		item.target = self
 		menu.addItem(item)
@@ -43,31 +32,8 @@ final class MenuBar: NSObject {
 		return menu
 	}
 	
-	@objc func showPopover(_ sender : NSMenuItem?) {
-		if let button = statusItem.button {
-			let popover = NSPopover()
-			let vc = PreferencesViewController.newInstance()
-			popover.contentViewController = vc
-			vc.intervalChanged = { self.resetTimer() }
-			popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
-			eventMonitor?.start()
-		}
+	@objc func prefClicked(_ sender : NSMenuItem?) {
+		presenter.prefClicked(statusItem: statusItem)
 	}
 	
-	private func startReminderTimer() {
-		let intervalInSecs = Interval().seconds()
-		timer = Timer.scheduledTimer(timeInterval: intervalInSecs,
-							 target: self,
-							 selector: #selector(showNotification),
-							 userInfo: nil, repeats: true)
-	}
-	
-	private func resetTimer() {
-		timer?.invalidate()
-		startReminderTimer()
-	}
-	
-	@objc private func showNotification() {
-		Reminder.show()
-	}
 }

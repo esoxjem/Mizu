@@ -4,6 +4,7 @@ final class PreferencesPresenter {
 	
 	private weak var view: PreferencesView?
 	private let preferences: Preferences
+	private var eventMonitor: EventMonitor?
 	
 	init(preferences: Preferences = Preferences()) {
 		self.preferences = preferences
@@ -11,8 +12,19 @@ final class PreferencesPresenter {
 	
 	func viewDidLoad(view: PreferencesView) {
 		self.view = view
-		
+		monitorOutsideClicks()
 		restoreUserPreferences()
+	}
+	
+	private func monitorOutsideClicks() {
+		eventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [weak self] event in
+			if let strongSelf = self {
+				strongSelf.eventMonitor?.stop()
+				strongSelf.view?.close()
+			}
+		}
+		
+		eventMonitor?.start()
 	}
 	
 	private func restoreUserPreferences() {

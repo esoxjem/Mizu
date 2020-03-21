@@ -5,4 +5,5 @@ protocol PreferencesView: class {
 	func disbleSoundSwitch()
 	func enableStartupSwitch()
 	func disbleStartupSwitch()
+	func close()
 }

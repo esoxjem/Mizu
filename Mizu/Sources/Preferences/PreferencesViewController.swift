@@ -63,6 +63,10 @@ extension PreferencesViewController: PreferencesView {
 	func disbleStartupSwitch() {
 		launchStartupSwitch.state = .off
 	}
+	
+	func close() {
+		view.window?.close()
+	}
 }
 
 
