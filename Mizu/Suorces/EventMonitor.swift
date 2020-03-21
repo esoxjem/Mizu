@@ -6,7 +6,6 @@
 //  Copyright © 2020 voidmain.dev. All rights reserved.
 //
 
-import Foundation
 import Cocoa
 
 public class EventMonitor {

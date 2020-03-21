@@ -742,18 +742,19 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LYv-Zd-KUN">
-                                <rect key="frame" x="169" y="245" width="145" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <sliderCell key="cell" state="on" alignment="left" maxValue="3" tickMarkPosition="below" numberOfTickMarks="5" allowsTickMarkValuesOnly="YES" sliderType="linear" id="Vc4-Yy-HXR"/>
-                            </slider>
                             <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" baseWritingDirection="leftToRight" alignment="left" state="on" translatesAutoresizingMaskIntoConstraints="NO" id="otn-wd-xrX">
                                 <rect key="frame" x="106" y="180" width="42" height="24"/>
                                 <autoresizingMask key="autoresizingMask"/>
+                                <connections>
+                                    <action selector="playSoundUpdates:" target="XfG-lQ-9wD" id="u3N-8H-iwX"/>
+                                </connections>
                             </switch>
                             <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" baseWritingDirection="leftToRight" alignment="left" state="on" translatesAutoresizingMaskIntoConstraints="NO" id="ZFj-2C-3vv">
                                 <rect key="frame" x="106" y="115" width="42" height="24"/>
                                 <autoresizingMask key="autoresizingMask"/>
+                                <connections>
+                                    <action selector="launchOnStartupUpdates:" target="XfG-lQ-9wD" id="5PO-tl-4qD"/>
+                                </connections>
                             </switch>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="6n8-nR-RHt">
                                 <rect key="frame" x="66" y="89" width="224" height="4"/>
@@ -786,10 +787,20 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="CXg-sW-c0Z"/>
                             </imageView>
+                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Grs-B0-ubb" userLabel="Slider">
+                                <rect key="frame" x="157" y="245" width="156" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <sliderCell key="cell" state="on" alignment="left" maxValue="5" tickMarkPosition="below" numberOfTickMarks="5" allowsTickMarkValuesOnly="YES" sliderType="linear" id="htI-hC-s0f"/>
+                                <connections>
+                                    <action selector="sliderUpdatesWithSlider:" target="XfG-lQ-9wD" id="H8o-AJ-5Rt"/>
+                                </connections>
+                            </slider>
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="slider" destination="LYv-Zd-KUN" id="BIH-Ca-Nj9"/>
+                        <outlet property="launchStartupSwitch" destination="ZFj-2C-3vv" id="6TS-Be-ERQ"/>
+                        <outlet property="playSoundSwitch" destination="otn-wd-xrX" id="273-Wl-Pvu"/>
+                        <outlet property="slider" destination="Grs-B0-ubb" id="lm7-hp-mMC"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		608A5EA5242653A300092E2C /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608A5EA4242653A300092E2C /* EventMonitor.swift */; };
+		608F028324266F1A00C75CC6 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608F028224266F1A00C75CC6 /* Preferences.swift */; };
 		60FDBDEB23A92B79007F7C29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FDBDEA23A92B79007F7C29 /* AppDelegate.swift */; };
 		60FDBDED23A92B79007F7C29 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FDBDEC23A92B79007F7C29 /* PreferencesViewController.swift */; };
 		60FDBDEF23A92B7A007F7C29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60FDBDEE23A92B7A007F7C29 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 
 /* Begin PBXFileReference section */
 		608A5EA4242653A300092E2C /* EventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
+		608F028224266F1A00C75CC6 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		60FDBDE723A92B79007F7C29 /* Mizu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mizu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60FDBDEA23A92B79007F7C29 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60FDBDEC23A92B79007F7C29 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
@@ -36,11 +38,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		608A5EB22426694E00092E2C /* Suorces */ = {
+			isa = PBXGroup;
+			children = (
+				60FDBDEA23A92B79007F7C29 /* AppDelegate.swift */,
+				608A5EA4242653A300092E2C /* EventMonitor.swift */,
+				60EE704D23A93BDC00C3BBF9 /* Preferences */,
+			);
+			path = Suorces;
+			sourceTree = "<group>";
+		};
 		60EE704D23A93BDC00C3BBF9 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
 				60FDBDEC23A92B79007F7C29 /* PreferencesViewController.swift */,
 				60FDBDF023A92B7A007F7C29 /* Main.storyboard */,
+				608F028224266F1A00C75CC6 /* Preferences.swift */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -80,12 +93,10 @@
 		60FDBDE923A92B79007F7C29 /* Mizu */ = {
 			isa = PBXGroup;
 			children = (
+				60FDBDF323A92B7A007F7C29 /* Info.plist */,
 				60EE705123A94BD000C3BBF9 /* Misc */,
 				60EE704E23A93BEB00C3BBF9 /* Resources */,
-				60EE704D23A93BDC00C3BBF9 /* Preferences */,
-				60FDBDEA23A92B79007F7C29 /* AppDelegate.swift */,
-				60FDBDF323A92B7A007F7C29 /* Info.plist */,
-				608A5EA4242653A300092E2C /* EventMonitor.swift */,
+				608A5EB22426694E00092E2C /* Suorces */,
 			);
 			path = Mizu;
 			sourceTree = "<group>";
@@ -162,6 +173,7 @@
 			files = (
 				608A5EA5242653A300092E2C /* EventMonitor.swift in Sources */,
 				60FDBDED23A92B79007F7C29 /* PreferencesViewController.swift in Sources */,
+				608F028324266F1A00C75CC6 /* Preferences.swift in Sources */,
 				60FDBDEB23A92B79007F7C29 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
