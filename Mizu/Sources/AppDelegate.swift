@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  Mizu
-//
-//  Created by Arun Sasidharan on 17/12/19.
-//  Copyright © 2020 voidmain.dev. All rights reserved.
-//
-
 import Cocoa
 
 @NSApplicationMain
@@ -77,7 +69,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 	
 	private func startReminderTimer() {
-		let intervalInSecs = Interval.seconds()
+		let intervalInSecs = Interval().seconds()
 		timer = Timer.scheduledTimer(timeInterval: intervalInSecs,
 							 target: self,
 							 selector: #selector(showNotification),
@@ -92,7 +84,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	@objc private func showNotification() {
 		let notification = NSUserNotification()
 		notification.title = "Time to drink water"
-		notification.informativeText = "It's been \(Interval.string()) since your last cup."
+		notification.informativeText = "It's been \(Interval().string()) since your last cup."
 		notification.soundName = NSUserNotificationDefaultSoundName
 		notification.hasActionButton = true
 		notification.otherButtonTitle = "Dismiss"

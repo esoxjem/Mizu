@@ -1,18 +1,12 @@
-//
-//  Interval.swift
-//  Mizu
-//
-//  Created by Arun Sasidharan on 21/03/20.
-//  Copyright © 2020 Fuzzy. All rights reserved.
-//
-
 import Foundation
 
 class Interval {
 	
-	static func seconds() -> Double {
+	let preferences = Preferences()
+	
+	func seconds() -> Double {
 		var mins = 0
-		switch UserDefaults.standard.integer(forKey:Preferences.interval.rawValue) {
+		switch preferences.selectedInterval() {
 		case 0:
 			mins = 30
 		case 1:
@@ -30,10 +24,10 @@ class Interval {
 		return Double(mins * 60)
 	}
 	
-	static func string() -> String {
+	func string() -> String {
 		var lastCup = ""
 		
-		switch UserDefaults.standard.integer(forKey:Preferences.interval.rawValue) {
+		switch preferences.selectedInterval() {
 		case 0:
 			lastCup = "30 mins"
 		case 1:

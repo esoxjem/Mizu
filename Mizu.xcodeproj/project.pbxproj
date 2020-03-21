@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		60801EFE24268F2D00B7008C /* PreferencesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60801EFD24268F2D00B7008C /* PreferencesPresenter.swift */; };
+		60801F0024268F7100B7008C /* PreferencesContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60801EFF24268F7100B7008C /* PreferencesContract.swift */; };
 		608A5EA5242653A300092E2C /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608A5EA4242653A300092E2C /* EventMonitor.swift */; };
 		608F028324266F1A00C75CC6 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608F028224266F1A00C75CC6 /* Preferences.swift */; };
 		608F0285242673AE00C75CC6 /* Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608F0284242673AE00C75CC6 /* Interval.swift */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		60801EFD24268F2D00B7008C /* PreferencesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesPresenter.swift; sourceTree = "<group>"; };
+		60801EFF24268F7100B7008C /* PreferencesContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesContract.swift; sourceTree = "<group>"; };
 		608A5EA4242653A300092E2C /* EventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		608F028224266F1A00C75CC6 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		608F0284242673AE00C75CC6 /* Interval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interval.swift; sourceTree = "<group>"; };
@@ -40,7 +44,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		608A5EB22426694E00092E2C /* Suorces */ = {
+		608A5EB22426694E00092E2C /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				60FDBDEA23A92B79007F7C29 /* AppDelegate.swift */,
@@ -48,15 +52,17 @@
 				608F0284242673AE00C75CC6 /* Interval.swift */,
 				60EE704D23A93BDC00C3BBF9 /* Preferences */,
 			);
-			path = Suorces;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		60EE704D23A93BDC00C3BBF9 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
+				608F028224266F1A00C75CC6 /* Preferences.swift */,
+				60801EFF24268F7100B7008C /* PreferencesContract.swift */,
+				60801EFD24268F2D00B7008C /* PreferencesPresenter.swift */,
 				60FDBDEC23A92B79007F7C29 /* PreferencesViewController.swift */,
 				60FDBDF023A92B7A007F7C29 /* Main.storyboard */,
-				608F028224266F1A00C75CC6 /* Preferences.swift */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -99,7 +105,7 @@
 				60FDBDF323A92B7A007F7C29 /* Info.plist */,
 				60EE705123A94BD000C3BBF9 /* Misc */,
 				60EE704E23A93BEB00C3BBF9 /* Resources */,
-				608A5EB22426694E00092E2C /* Suorces */,
+				608A5EB22426694E00092E2C /* Sources */,
 			);
 			path = Mizu;
 			sourceTree = "<group>";
@@ -174,9 +180,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60801F0024268F7100B7008C /* PreferencesContract.swift in Sources */,
 				608F0285242673AE00C75CC6 /* Interval.swift in Sources */,
 				608A5EA5242653A300092E2C /* EventMonitor.swift in Sources */,
 				60FDBDED23A92B79007F7C29 /* PreferencesViewController.swift in Sources */,
+				60801EFE24268F2D00B7008C /* PreferencesPresenter.swift in Sources */,
 				608F028324266F1A00C75CC6 /* Preferences.swift in Sources */,
 				60FDBDEB23A92B79007F7C29 /* AppDelegate.swift in Sources */,
 			);

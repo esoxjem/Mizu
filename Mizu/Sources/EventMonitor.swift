@@ -1,11 +1,3 @@
-//
-//  EventMonitor.swift
-//  Mizu
-//
-//  Created by Arun Sasidharan on 21/03/20.
-//  Copyright © 2020 voidmain.dev. All rights reserved.
-//
-
 import Cocoa
 
 public class EventMonitor {
