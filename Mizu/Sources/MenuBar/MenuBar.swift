@@ -3,7 +3,6 @@ import Cocoa
 final class MenuBar: NSObject {
 	
 	private let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
-	private let popover = NSPopover()
 	private var timer: Timer?
 	
 	var eventMonitor: EventMonitor?
@@ -11,14 +10,13 @@ final class MenuBar: NSObject {
 	func launch() {
 		monitorOutsideClicks()
 		initStatusBar()
-		initPopover()
 		startReminderTimer()
 	}
 	
 	private func monitorOutsideClicks() {
 		eventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [weak self] event in
 			if let strongSelf = self {
-				strongSelf.togglePopover(nil)
+				strongSelf.eventMonitor?.stop()
 			}
 		}
 	}
@@ -34,7 +32,7 @@ final class MenuBar: NSObject {
 	private func createMenu() -> NSMenu {
 		let menu = NSMenu()
 		let item = NSMenuItem(title: "Preferences",
-							  action: #selector(togglePopover(_:)),
+							  action: #selector(showPopover(_:)),
 							  keyEquivalent: "")
 		item.target = self
 		menu.addItem(item)
@@ -45,28 +43,15 @@ final class MenuBar: NSObject {
 		return menu
 	}
 	
-	@objc func togglePopover(_ sender : NSMenuItem?) {
-		if popover.isShown {
-			closePopover()
-		} else {
-			showPopover()
-		}
-	}
-	
-	private func showPopover() {
+	@objc func showPopover(_ sender : NSMenuItem?) {
 		if let button = statusItem.button {
+			let popover = NSPopover()
+			let vc = PreferencesViewController.newInstance()
+			popover.contentViewController = vc
+			vc.intervalChanged = { self.resetTimer() }
 			popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
 			eventMonitor?.start()
 		}
-	}
-	
-	private func closePopover() {
-		popover.performClose(nil)
-		eventMonitor?.stop()
-	}
-	
-	private func initPopover() {
-		popover.contentViewController = PreferencesViewController.newInstance()
 	}
 	
 	private func startReminderTimer() {
@@ -77,7 +62,7 @@ final class MenuBar: NSObject {
 							 userInfo: nil, repeats: true)
 	}
 	
-	func resetTimer() {
+	private func resetTimer() {
 		timer?.invalidate()
 		startReminderTimer()
 	}

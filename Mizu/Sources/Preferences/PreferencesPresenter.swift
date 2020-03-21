@@ -33,7 +33,6 @@ final class PreferencesPresenter {
 	
 	func sliderMoved(value: Int) {
 		preferences.saveSelectedInterval(value)
-		(NSApp.delegate as? AppDelegate)?.resetTimer()
 	}
 	
 	func soundSwitchToggled(state: NSSwitch.StateValue) {

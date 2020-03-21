@@ -8,6 +8,7 @@ class PreferencesViewController: NSViewController {
 	@IBOutlet weak var launchStartupSwitch: NSSwitch!
 	
 	private let presenter = PreferencesPresenter()
+	var intervalChanged: (() -> Void)?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -16,6 +17,7 @@ class PreferencesViewController: NSViewController {
 
 	@IBAction func sliderUpdates(slider: NSSlider) {
 		presenter.sliderMoved(value: Int(slider.intValue))
+		intervalChanged?()
 	}
 	
 	@IBAction func playSoundUpdates(_ sound: NSSwitch) {

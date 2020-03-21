@@ -9,9 +9,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		menubar.launch()
 	}
 	
-	func resetTimer() {
-		menubar.resetTimer()
-	}
-	
 }
 
