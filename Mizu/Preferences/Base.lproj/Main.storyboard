@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -684,9 +684,105 @@
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController storyboardIdentifier="PreferencesViewController" id="XfG-lQ-9wD" customClass="PreferencesViewController" customModule="Mizu" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                    <view key="view" wantsLayer="YES" appearanceType="aqua" id="m2S-Jp-Qdl">
+                        <rect key="frame" x="0.0" y="0.0" width="350" height="400"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vsK-hQ-5Sg">
+                                <rect key="frame" x="145" y="332" width="48" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="CXg-sW-c0Z"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qeb-Jm-dTD">
+                                <rect key="frame" x="27" y="248" width="101" height="18"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Notify me every:" id="OmX-uv-BXL">
+                                    <font key="font" size="13" name="AvenirNext-Regular"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cPw-kw-Krb">
+                                <rect key="frame" x="163" y="183" width="71" height="18"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Play Sound" id="cbW-8U-KZS">
+                                    <font key="font" size="13" name="AvenirNext-Regular"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CLq-LB-b8H">
+                                <rect key="frame" x="163" y="138" width="111" height="18"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Launch on startup" id="K5h-lp-AjU">
+                                    <font key="font" size="13" name="AvenirNext-Regular"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2sR-aJ-Ogc">
+                                <rect key="frame" x="161" y="230" width="40" height="14"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="30 mins" id="gaD-ZF-JrT">
+                                    <font key="font" size="10" name="AvenirNext-Regular"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kzc-4B-Qw8">
+                                <rect key="frame" x="225" y="230" width="34" height="14"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="1 hour" id="rIt-O2-FQr">
+                                    <font key="font" size="10" name="AvenirNext-Regular"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E8x-in-5Pi">
+                                <rect key="frame" x="285" y="230" width="39" height="14"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="2 hours" id="3Hj-wM-y3T">
+                                    <font key="font" size="10" name="AvenirNext-Regular"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LYv-Zd-KUN">
+                                <rect key="frame" x="169" y="245" width="145" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <sliderCell key="cell" state="on" alignment="left" maxValue="3" tickMarkPosition="below" numberOfTickMarks="5" allowsTickMarkValuesOnly="YES" sliderType="linear" id="Vc4-Yy-HXR"/>
+                            </slider>
+                            <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" baseWritingDirection="leftToRight" alignment="left" state="on" translatesAutoresizingMaskIntoConstraints="NO" id="otn-wd-xrX">
+                                <rect key="frame" x="106" y="180" width="42" height="24"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </switch>
+                            <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" baseWritingDirection="leftToRight" alignment="left" state="on" translatesAutoresizingMaskIntoConstraints="NO" id="ZFj-2C-3vv">
+                                <rect key="frame" x="106" y="135" width="42" height="24"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </switch>
+                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="6n8-nR-RHt">
+                                <rect key="frame" x="66" y="104" width="224" height="4"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </box>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NIx-FZ-dhh">
+                                <rect key="frame" x="142" y="297" width="56" height="33"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="mizu" id="Eml-f0-rc1">
+                                    <font key="font" size="24" name="AvenirNext-UltraLight"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4rP-ja-BYQ">
+                                <rect key="frame" x="104" y="14" width="135" height="18"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Made with ❤️ in Berlin" id="OGI-sQ-L0B">
+                                    <font key="font" size="13" name="AvenirNext-UltraLight"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
                     </view>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -694,4 +790,7 @@
             <point key="canvasLocation" x="75" y="655"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NSApplicationIcon" width="32" height="32"/>
+    </resources>
 </document>

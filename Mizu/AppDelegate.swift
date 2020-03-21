@@ -20,10 +20,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		initPopover()
 	}
 
-	func applicationWillTerminate(_ aNotification: Notification) {
-		// Insert code here to tear down your application
-	}
-
 	private func initStatusBar() {
 		if let button = statusItem.button {
 			button.image = NSImage(named:NSImage.Name("StatusBarImage"))
@@ -58,15 +54,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 	}
 
-	func showPopover() {
+	private func showPopover() {
 		if let button = statusItem.button {
 			popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
 		}
 	}
 
-	func closePopover() {
+	private func closePopover() {
 		popover.performClose(nil)
 	}
 
+	func applicationWillTerminate(_ aNotification: Notification) {
+		// Insert code here to tear down your application
+	}
 }
 

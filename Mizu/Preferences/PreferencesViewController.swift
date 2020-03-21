@@ -10,11 +10,11 @@ import Cocoa
 import SwiftUI
 
 class PreferencesViewController: NSViewController {
-
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
-		// Do any additional setup after loading the view.
+		
+		
 	}
 
 	override var representedObject: Any? {
