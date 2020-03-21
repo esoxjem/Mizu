@@ -63,8 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				60FDBDEA23A92B79007F7C29 /* AppDelegate.swift */,
-				608F0284242673AE00C75CC6 /* Interval.swift */,
-				60F57E5F2426B97E00A70DDE /* Reminder.swift */,
+				60F57E632426BE6600A70DDE /* Reminder */,
 				60801F01242696DA00B7008C /* MenuBar */,
 				60EE704D23A93BDC00C3BBF9 /* Preferences */,
 			);
@@ -98,6 +97,15 @@
 				60FDBDF423A92B7A007F7C29 /* Mizu.entitlements */,
 			);
 			path = Misc;
+			sourceTree = "<group>";
+		};
+		60F57E632426BE6600A70DDE /* Reminder */ = {
+			isa = PBXGroup;
+			children = (
+				608F0284242673AE00C75CC6 /* Interval.swift */,
+				60F57E5F2426B97E00A70DDE /* Reminder.swift */,
+			);
+			path = Reminder;
 			sourceTree = "<group>";
 		};
 		60FDBDDE23A92B79007F7C29 = {
