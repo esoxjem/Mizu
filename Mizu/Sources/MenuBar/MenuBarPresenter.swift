@@ -2,18 +2,14 @@ import Cocoa
 
 final class MenuBarPresenter {
 	
-	private var timer: Timer?
+	private let reminder: Reminder
 	
-	func launch() {
-		startReminderTimer()
+	init(reminder: Reminder = Reminder()) {
+		self.reminder = reminder
 	}
 	
-	private func startReminderTimer() {
-		let intervalInSecs = Interval().seconds()
-		timer = Timer.scheduledTimer(timeInterval: intervalInSecs,
-							 target: self,
-							 selector: #selector(showNotification),
-							 userInfo: nil, repeats: true)
+	func launch() {
+		reminder.startTimer()
 	}
 	
 	func prefClicked(statusItem: NSStatusItem) {
@@ -27,12 +23,7 @@ final class MenuBarPresenter {
 	}
 	
 	private func resetTimer() {
-		timer?.invalidate()
-		startReminderTimer()
-	}
-	
-	@objc private func showNotification() {
-		Reminder.show()
+		reminder.reset()
 	}
 	
 }

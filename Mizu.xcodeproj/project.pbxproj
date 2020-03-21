@@ -63,7 +63,6 @@
 			isa = PBXGroup;
 			children = (
 				60FDBDEA23A92B79007F7C29 /* AppDelegate.swift */,
-				608A5EA4242653A300092E2C /* EventMonitor.swift */,
 				608F0284242673AE00C75CC6 /* Interval.swift */,
 				60F57E5F2426B97E00A70DDE /* Reminder.swift */,
 				60801F01242696DA00B7008C /* MenuBar */,
@@ -75,6 +74,7 @@
 		60EE704D23A93BDC00C3BBF9 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
+				608A5EA4242653A300092E2C /* EventMonitor.swift */,
 				608F028224266F1A00C75CC6 /* Preferences.swift */,
 				60801EFF24268F7100B7008C /* PreferencesContract.swift */,
 				60801EFD24268F2D00B7008C /* PreferencesPresenter.swift */,
