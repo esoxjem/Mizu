@@ -25,23 +25,23 @@ class Interval {
 	}
 	
 	func string() -> String {
-		var lastCup = ""
+		var time = ""
 		
 		switch preferences.selectedInterval() {
 		case 0:
-			lastCup = "30 mins"
+			time = "30 mins"
 		case 1:
-			lastCup = "45 mins"
+			time = "45 mins"
 		case 2:
-			lastCup = "1 hour"
+			time = "1 hour"
 		case 3:
-			lastCup = "1.5 hours"
+			time = "1.5 hours"
 		case 4:
-			lastCup = "2 hours"
+			time = "2 hours"
 		default:
 			break
 		}
 		
-		return lastCup
+		return time
 	}
 }
