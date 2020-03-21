@@ -3,7 +3,7 @@
 //  Mizu
 //
 //  Created by Arun Sasidharan on 17/12/19.
-//  Copyright © 2019 Fuzzy. All rights reserved.
+//  Copyright © 2020 voidmain.dev. All rights reserved.
 //
 
 import Cocoa

@@ -3,7 +3,7 @@
 //  Mizu
 //
 //  Created by Arun Sasidharan on 17/12/19.
-//  Copyright © 2019 Fuzzy. All rights reserved.
+//  Copyright © 2020 voidmain.dev. All rights reserved.
 //
 
 import Cocoa
@@ -11,18 +11,21 @@ import SwiftUI
 
 class PreferencesViewController: NSViewController {
 	
+	@IBOutlet weak var slider: NSSlider!
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+		updateSlider()
+		updateSwitches()
+	}
+	
+	private func updateSlider() {
 		
 	}
 
-	override var representedObject: Any? {
-		didSet {
-		// Update the view, if already loaded.
-		}
+	private func updateSwitches() {
+		
 	}
-
 
 }
 

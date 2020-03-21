@@ -3,7 +3,7 @@
 //  Mizu
 //
 //  Created by Arun Sasidharan on 21/03/20.
-//  Copyright © 2020 Fuzzy. All rights reserved.
+//  Copyright © 2020 voidmain.dev. All rights reserved.
 //
 
 import Foundation
