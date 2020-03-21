@@ -13,6 +13,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	private let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
 	private let popover = NSPopover()
+	private var timer: Timer?
 	
 	var eventMonitor: EventMonitor?
 	
@@ -76,16 +77,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 	
 	private func startReminderTimer() {
-		//todo schedule timer based on user preference
-		
-		Timer.scheduledTimer(timeInterval: 30,
+		let intervalInSecs = Interval.seconds()
+		timer = Timer.scheduledTimer(timeInterval: intervalInSecs,
 							 target: self,
 							 selector: #selector(showNotification),
 							 userInfo: nil, repeats: true)
 	}
 	
+	func resetTimer() {
+		timer?.invalidate()
+		startReminderTimer()
+	}
+	
 	@objc private func showNotification() {
-		//todo show mac notification
+		let notification = NSUserNotification()
+		notification.title = "Time to drink water"
+		notification.informativeText = "It's been \(Interval.string()) since your last cup."
+		notification.soundName = NSUserNotificationDefaultSoundName
+		notification.hasActionButton = true
+		notification.otherButtonTitle = "Dismiss"
+		notification.actionButtonTitle = "OK"
+		
+		let notificationCenter = NSUserNotificationCenter.default
+		notificationCenter.deliver(notification)
 	}
 	
 }

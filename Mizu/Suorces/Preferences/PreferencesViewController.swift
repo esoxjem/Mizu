@@ -42,6 +42,7 @@ class PreferencesViewController: NSViewController {
 	@IBAction func sliderUpdates(slider: NSSlider) {
 		debugPrint("slider: \(slider.intValue)")
 		UserDefaults.standard.set(slider.intValue, forKey: Preferences.interval.rawValue)
+		(NSApp.delegate as? AppDelegate)?.resetTimer()
 	}
 	
 	@IBAction func playSoundUpdates(_ sound: NSSwitch) {
