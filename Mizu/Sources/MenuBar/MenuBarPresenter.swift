@@ -12,7 +12,7 @@ final class MenuBarPresenter {
         reminder.startTimer()
     }
     
-    func prefClicked(statusItem: NSStatusItem) {
+    func statusItemTap(statusItem: NSStatusItem) {
         if let button = statusItem.button {
             let popover = NSPopover()
             let vc = PreferencesViewController.newInstance()

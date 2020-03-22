@@ -62,5 +62,4 @@ final class PreferencesPresenter {
         }
         preferences.saveStartupLaunch(isEnabled: isEnabled)
     }
-    
 }

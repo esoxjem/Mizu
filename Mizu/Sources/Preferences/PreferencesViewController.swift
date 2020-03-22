@@ -27,6 +27,35 @@ class PreferencesViewController: NSViewController {
     @IBAction func launchOnStartupUpdates(_ launch: NSSwitch) {
         presenter.startupSwitchToggled(state: launch.state)
     }
+    
+    @IBAction func settingsTap(_ sender: NSButton) {
+        let menu = NSMenu()
+        let twitter = NSMenuItem(title: "@voidmaindev", action: #selector(twitter(_:)), keyEquivalent: "")
+        let github = NSMenuItem(title: "GitHub", action: #selector(github(_:)), keyEquivalent: "")
+        let quit = NSMenuItem(title: "Quit Mizu", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "")
+        
+        twitter.target = self
+        github.target = self
+        
+        menu.addItem(twitter)
+        menu.addItem(github)
+        menu.addItem(NSMenuItem.separator())
+        menu.addItem(quit)
+        
+        if let event = NSApplication.shared.currentEvent {
+            NSMenu.popUpContextMenu(menu, with: event, for: sender)
+        }
+    }
+    
+    @objc private func twitter(_ sender: NSMenuItem) {
+        let url = URL(string: "https://www.twitter.com/voidmaindev")!
+        NSWorkspace.shared.open(url)
+    }
+    
+    @objc private func github(_ sender: NSMenuItem) {
+        let url = URL(string: "https://www.github.com/esoxjem/Mizu")!
+        NSWorkspace.shared.open(url)
+    }
 }
 
 extension PreferencesViewController {
