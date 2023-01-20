@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -787,17 +786,6 @@
                                     <action selector="sliderUpdatesWithSlider:" target="XfG-lQ-9wD" id="H8o-AJ-5Rt"/>
                                 </connections>
                             </slider>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tun-vn-HEi">
-                                <rect key="frame" x="304" y="5" width="48" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="setttings" bezelStyle="rounded" image="gear" imagePosition="overlaps" alignment="center" borderStyle="border" transparent="YES" imageScaling="proportionallyUpOrDown" inset="2" id="Dx0-6h-RyW">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="settingsTap:" target="XfG-lQ-9wD" id="Pt5-uA-to5"/>
-                                </connections>
-                            </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4rP-ja-BYQ">
                                 <rect key="frame" x="114" y="13" width="139" height="18"/>
                                 <autoresizingMask key="autoresizingMask"/>
@@ -807,6 +795,17 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tun-vn-HEi">
+                                <rect key="frame" x="317" y="372" width="34" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="gear" imagePosition="overlaps" alignment="center" alternateImage="gear" state="on" imageScaling="proportionallyUpOrDown" inset="2" id="Dx0-6h-RyW">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="settingsTap:" target="XfG-lQ-9wD" id="Pt5-uA-to5"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -822,6 +821,6 @@
     </scenes>
     <resources>
         <image name="NSApplicationIcon" width="32" height="32"/>
-        <image name="gear" width="78" height="78"/>
+        <image name="gear" width="20.410200119018555" height="20.419900894165039"/>
     </resources>
 </document>
