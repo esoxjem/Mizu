@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		60382F58297B146600F893C5 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60382F57297B146500F893C5 /* ServiceManagement.framework */; };
+		60382F61297B1F4400F893C5 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 60382F60297B1F4400F893C5 /* LaunchAtLogin */; };
+		6060A794297AFF75002B46E9 /* AutoLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6060A793297AFF75002B46E9 /* AutoLaunch.swift */; };
 		60801EFE24268F2D00B7008C /* PreferencesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60801EFD24268F2D00B7008C /* PreferencesPresenter.swift */; };
 		60801F0024268F7100B7008C /* PreferencesContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60801EFF24268F7100B7008C /* PreferencesContract.swift */; };
 		60801F032426970100B7008C /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60801F022426970100B7008C /* MenuBar.swift */; };
@@ -22,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		60382F57297B146500F893C5 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
+		6060A793297AFF75002B46E9 /* AutoLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLaunch.swift; sourceTree = "<group>"; };
 		60801EFD24268F2D00B7008C /* PreferencesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesPresenter.swift; sourceTree = "<group>"; };
 		60801EFF24268F7100B7008C /* PreferencesContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesContract.swift; sourceTree = "<group>"; };
 		60801F022426970100B7008C /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
@@ -44,12 +49,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60382F61297B1F4400F893C5 /* LaunchAtLogin in Frameworks */,
+				60382F58297B146600F893C5 /* ServiceManagement.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		60382F56297B146500F893C5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				60382F57297B146500F893C5 /* ServiceManagement.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		60801F01242696DA00B7008C /* MenuBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +94,7 @@
 				60801EFD24268F2D00B7008C /* PreferencesPresenter.swift */,
 				60FDBDEC23A92B79007F7C29 /* PreferencesViewController.swift */,
 				60FDBDF023A92B7A007F7C29 /* Main.storyboard */,
+				6060A793297AFF75002B46E9 /* AutoLaunch.swift */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -113,6 +129,7 @@
 			children = (
 				60FDBDE923A92B79007F7C29 /* Mizu */,
 				60FDBDE823A92B79007F7C29 /* Products */,
+				60382F56297B146500F893C5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -151,6 +168,9 @@
 			dependencies = (
 			);
 			name = Mizu;
+			packageProductDependencies = (
+				60382F60297B1F4400F893C5 /* LaunchAtLogin */,
+			);
 			productName = Mizu;
 			productReference = 60FDBDE723A92B79007F7C29 /* Mizu.app */;
 			productType = "com.apple.product-type.application";
@@ -162,7 +182,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1110;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1420;
 				ORGANIZATIONNAME = Fuzzy;
 				TargetAttributes = {
 					60FDBDE623A92B79007F7C29 = {
@@ -179,6 +199,9 @@
 				Base,
 			);
 			mainGroup = 60FDBDDE23A92B79007F7C29;
+			packageReferences = (
+				60382F5F297B1F4400F893C5 /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */,
+			);
 			productRefGroup = 60FDBDE823A92B79007F7C29 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -205,6 +228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6060A794297AFF75002B46E9 /* AutoLaunch.swift in Sources */,
 				60801F0024268F7100B7008C /* PreferencesContract.swift in Sources */,
 				608F0285242673AE00C75CC6 /* Interval.swift in Sources */,
 				60801F032426970100B7008C /* MenuBar.swift in Sources */,
@@ -258,6 +282,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -265,6 +290,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -282,10 +308,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.esoxjem.mizu;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -318,6 +345,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -325,6 +353,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -336,9 +365,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.esoxjem.mizu;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -351,15 +381,21 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Mizu/Misc/Mizu.entitlements;
 				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 3;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Mizu/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Mizu;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.5;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.voidmain.Mizu;
+				MARKETING_VERSION = 0.7.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.esoxjem.mizu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -371,15 +407,21 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Mizu/Misc/Mizu.entitlements;
 				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 3;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Mizu/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Mizu;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.5;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.voidmain.Mizu;
+				MARKETING_VERSION = 0.7.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.esoxjem.mizu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -407,6 +449,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		60382F5F297B1F4400F893C5 /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin-Modern";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		60382F60297B1F4400F893C5 /* LaunchAtLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 60382F5F297B1F4400F893C5 /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */;
+			productName = LaunchAtLogin;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 60FDBDDF23A92B79007F7C29 /* Project object */;
 }

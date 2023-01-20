@@ -1,5 +1,5 @@
 
-protocol PreferencesView: class {
+protocol PreferencesView: AnyObject {
     func setInterval(interval: Int)
     func enableSoundSwitch()
     func disbleSoundSwitch()

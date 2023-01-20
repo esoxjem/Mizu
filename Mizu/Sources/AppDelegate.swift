@@ -5,7 +5,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     private let menubar = MenuBar()
     
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
+    func applicationDidFinishLaunching(_: Notification) {
         menubar.launch()
     }
 }

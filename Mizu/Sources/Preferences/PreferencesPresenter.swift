@@ -5,9 +5,12 @@ final class PreferencesPresenter {
     private weak var view: PreferencesView?
     private let preferences: Preferences
     private var eventMonitor: EventMonitor?
+    private var autoLaunch: AutoLaunch?
     
-    init(preferences: Preferences = Preferences()) {
+    
+    init(preferences: Preferences = Preferences(), autoLaunch: AutoLaunch = AutoLaunch()) {
         self.preferences = preferences
+        self.autoLaunch = autoLaunch
     }
     
     func viewDidLoad(view: PreferencesView) {
@@ -59,7 +62,11 @@ final class PreferencesPresenter {
         var isEnabled = true
         if state == .off {
             isEnabled = false
+            autoLaunch?.disable()
+        } else {
+            autoLaunch?.enable()
         }
+        
         preferences.saveStartupLaunch(isEnabled: isEnabled)
     }
 }
