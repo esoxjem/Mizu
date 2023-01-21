@@ -1,0 +1,17 @@
+name: PR on Main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Build app
+      run: xcodebuild -project Mizu.xcodeproj

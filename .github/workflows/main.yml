@@ -1,0 +1,22 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Increment build number
+      run: |
+        buildNumber=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" Mizu/Info.plist)
+        buildNumber=$((buildNumber + 1))
+        /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $buildNumber" Mizu/Info.plist
+    - name: Build app
+      run: xcodebuild -project Mizu.xcodeproj -scheme Mizu -configuration Release
