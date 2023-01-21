@@ -183,7 +183,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1110;
 				LastUpgradeCheck = 1420;
-				ORGANIZATIONNAME = Fuzzy;
+				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					60FDBDE623A92B79007F7C29 = {
 						CreatedOnToolsVersion = 11.1;
