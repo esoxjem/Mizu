@@ -1,0 +1,42 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Increment build number
+      run: |
+        buildNumber=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" Mizu/Info.plist)
+        buildNumber=$((buildNumber + 1))
+        /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $buildNumber" Mizu/Info.plist
+    - name: Build app
+      run: xcodebuild -project Mizu.xcodeproj -scheme Mizu -configuration Release
+    - name: Get the app file
+      run: find Mizu.app -name "Mizu.app" -type d -exec cp -r {} . \;
+    - name: Create release
+      id: create_release
+      uses: actions/create-release@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.MIZU_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+    - name: Upload binary
+      uses: actions/upload-release-asset@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.MIZU_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: Mizu.app
+        asset_name: Mizu.app
+        asset_content_type: application/octet-stream
