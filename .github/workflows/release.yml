@@ -1,42 +1,44 @@
-name: Build and Release
+name: Release
 
-on:
+on: 
   push:
     tags:
-      - 'v*'
+    - 'v*'
 
 jobs:
-  build:
+  release:
     runs-on: macos-latest
+    permissions:
+      contents: write
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-    - name: Increment build number
-      run: |
-        buildNumber=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" Mizu/Info.plist)
-        buildNumber=$((buildNumber + 1))
-        /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $buildNumber" Mizu/Info.plist
-    - name: Build app
-      run: xcodebuild -project Mizu.xcodeproj -scheme Mizu -configuration Release
-    - name: Get the app file
-      run: find Mizu.app -name "Mizu.app" -type d -exec cp -r {} . \;
-    - name: Create release
-      id: create_release
-      uses: actions/create-release@v2
-      env:
-        GITHUB_TOKEN: ${{ secrets.MIZU_TOKEN }}
-      with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        draft: false
-        prerelease: false
-    - name: Upload binary
-      uses: actions/upload-release-asset@v2
-      env:
-        GITHUB_TOKEN: ${{ secrets.MIZU_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: Mizu.app
-        asset_name: Mizu.app
-        asset_content_type: application/octet-stream
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build
+        run: xcodebuild -scheme "Mizu" -project Mizu.xcodeproj build
+
+      - name: Archive
+        run: |
+          mkdir ./archives ̰
+          xcodebuild -scheme "Mizu" -archivePath "./archives/Mizu.xcarchive" -project Mizu.xcodeproj archive  
+
+      - name: Export
+        run: xcodebuild -exportArchive -archivePath "./archives/Mizu.xcarchive/" -exportOptionsPlist exopt.plist -exportPath "./archives"
+
+      - name: Create DMG
+        run: |
+          npm install --global create-dmg
+          create-dmg ./archives/Mizu.app ./archives
+        continue-on-error: true
+
+      - name: Rename DMG
+        run: mv ./archives/Mizu*.dmg ./archives/Mizu.dmg
+
+      - name: Compress
+        run: zip -r -X ./archives/Mizu.zip ./archives/Mizu.app
+
+      - name: Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "./archives/Mizu.zip,./archives/Mizu.dmg"
