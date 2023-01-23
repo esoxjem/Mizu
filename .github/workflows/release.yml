@@ -15,6 +15,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Remove Code Sign Identity
+        run: sed -i .bak 's/Mac Developer/-/g' ./Mizu.xcodeproj/project.pbxproj
+
       - name: Build
         run: xcodebuild -scheme "Mizu" -project Mizu.xcodeproj build
 
