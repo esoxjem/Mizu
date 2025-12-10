@@ -23,6 +23,8 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		60365B272EE9B3E500B4D025 /* Sources */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Sources; sourceTree = "<group>"; };
+		60365BAD2EE9CBCC00B4D025 /* .claude */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = .claude; sourceTree = "<group>"; };
+		60365BB22EE9CBCC00B4D025 /* .github */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = .github; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,8 @@
 		60FDBDDE23A92B79007F7C29 = {
 			isa = PBXGroup;
 			children = (
+				60365BAD2EE9CBCC00B4D025 /* .claude */,
+				60365BB22EE9CBCC00B4D025 /* .github */,
 				60365B162EE9B3DA00B4D025 /* CLAUDE.md */,
 				60FDBDE923A92B79007F7C29 /* Mizu */,
 				60FDBDE823A92B79007F7C29 /* Products */,
@@ -332,6 +336,7 @@
 				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = QTZUF46V7A;
+				ENABLE_HARDENED_RUNTIME = YES;
 				"DEVELOPMENT_TEAM[sdk=macosx*]" = QTZUF46V7A;
 				INFOPLIST_FILE = Mizu/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Mizu;
