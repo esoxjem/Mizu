@@ -30,7 +30,7 @@ class PreferencesViewController: NSViewController {
     
     @IBAction func settingsTap(_ sender: NSButton) {
         let menu = NSMenu()
-        let notificationSettings = NSMenuItem(title: "Notification Settings…", action: #selector(openNotificationSettings(_:)), keyEquivalent: "")
+        let notificationSettings = NSMenuItem(title: "Notification Settings", action: #selector(openNotificationSettings(_:)), keyEquivalent: "")
         let twitter = NSMenuItem(title: "@ES0XJEM", action: #selector(twitter(_:)), keyEquivalent: "")
         let github = NSMenuItem(title: "GitHub", action: #selector(github(_:)), keyEquivalent: "")
         let quit = NSMenuItem(title: "Quit Mizu", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "")
