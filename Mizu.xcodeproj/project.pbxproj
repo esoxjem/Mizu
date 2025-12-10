@@ -26,6 +26,7 @@
 		60365B272EE9B3E500B4D025 /* Sources */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Sources; sourceTree = "<group>"; };
 		60365BAD2EE9CBCC00B4D025 /* .claude */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = .claude; sourceTree = "<group>"; };
 		60365BB22EE9CBCC00B4D025 /* .github */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = .github; sourceTree = "<group>"; };
+		60365BF12EE9D64700B4D025 /* Assets */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Assets; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +69,7 @@
 		60FDBDDE23A92B79007F7C29 = {
 			isa = PBXGroup;
 			children = (
+				60365BF12EE9D64700B4D025 /* Assets */,
 				60365BD62EE9D14E00B4D025 /* README.md */,
 				60365BAD2EE9CBCC00B4D025 /* .claude */,
 				60365BB22EE9CBCC00B4D025 /* .github */,

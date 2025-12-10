@@ -1,12 +1,18 @@
 import Cocoa
 
-@NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+/// App delegate that sets up the menu bar controller and notification delegate.
+/// The @main attribute is now on MizuApp, so @NSApplicationMain is removed.
+final class AppDelegate: NSObject, NSApplicationDelegate {
+    private var menuBarController: MenuBarController?
 
-    private let menubar = MenuBar()
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        // Initialize notification delegate to handle foreground notifications
+        _ = NotificationDelegate.shared
 
-    func applicationDidFinishLaunching(_: Notification) {
-        _ = NotificationManager.shared
-        menubar.launch()
+        // Request notification permission and start the menu bar
+        Task { @MainActor in
+            _ = await NotificationActor.shared.requestPermissionIfNeeded()
+            menuBarController = MenuBarController()
+        }
     }
 }
