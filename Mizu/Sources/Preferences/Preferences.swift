@@ -31,10 +31,19 @@ final class Preferences {
     func saveStartupLaunch(isEnabled: Bool) {
         userDefaults.set(isEnabled, forKey: PreferenceType.startup.rawValue)
     }
+
+    func hasRequestedNotificationPermission() -> Bool {
+        return userDefaults.bool(forKey: PreferenceType.hasRequestedNotificationPermission.rawValue)
+    }
+
+    func markNotificationPermissionRequested() {
+        userDefaults.set(true, forKey: PreferenceType.hasRequestedNotificationPermission.rawValue)
+    }
 }
 
 enum PreferenceType: String {
     case interval
     case sound
     case startup
+    case hasRequestedNotificationPermission
 }

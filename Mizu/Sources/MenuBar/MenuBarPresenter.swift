@@ -1,17 +1,20 @@
 import Cocoa
 
 final class MenuBarPresenter {
-    
+
     private let reminder: Reminder
     private let popover = NSPopover()
-    
+    private let notificationManager = NotificationManager.shared
+
     init(reminder: Reminder = Reminder()) {
         self.reminder = reminder
     }
-    
+
     func launch() {
-        reminder.startTimer()
         buildPopup()
+        notificationManager.requestPermissionIfNeeded { [weak self] _ in
+            self?.reminder.startTimer()
+        }
     }
     
     func buildPopup() {

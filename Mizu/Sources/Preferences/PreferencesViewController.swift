@@ -30,20 +30,30 @@ class PreferencesViewController: NSViewController {
     
     @IBAction func settingsTap(_ sender: NSButton) {
         let menu = NSMenu()
+        let notificationSettings = NSMenuItem(title: "Notification Settings…", action: #selector(openNotificationSettings(_:)), keyEquivalent: "")
         let twitter = NSMenuItem(title: "@ES0XJEM", action: #selector(twitter(_:)), keyEquivalent: "")
         let github = NSMenuItem(title: "GitHub", action: #selector(github(_:)), keyEquivalent: "")
         let quit = NSMenuItem(title: "Quit Mizu", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "")
-        
+
+        notificationSettings.target = self
         twitter.target = self
         github.target = self
-        
+
+        menu.addItem(notificationSettings)
+        menu.addItem(NSMenuItem.separator())
         menu.addItem(twitter)
         menu.addItem(github)
         menu.addItem(NSMenuItem.separator())
         menu.addItem(quit)
-        
+
         if let event = NSApplication.shared.currentEvent {
             NSMenu.popUpContextMenu(menu, with: event, for: sender)
+        }
+    }
+
+    @objc private func openNotificationSettings(_ sender: NSMenuItem) {
+        if let url = URL(string: "x-apple.systempreferences:com.apple.Notifications-Settings.extension") {
+            NSWorkspace.shared.open(url)
         }
     }
     
