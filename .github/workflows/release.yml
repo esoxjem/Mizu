@@ -86,12 +86,26 @@ jobs:
           # Create ZIP for notarization
           ditto -c -k --keepParent "./archives/Mizu.app" "./archives/Mizu-notarize.zip"
 
-          # Submit for notarization
-          xcrun notarytool submit "./archives/Mizu-notarize.zip" \
+          # Submit for notarization and capture output
+          NOTARIZE_OUTPUT=$(xcrun notarytool submit "./archives/Mizu-notarize.zip" \
             --apple-id "$APPLE_ID" \
             --password "$APPLE_ID_PASSWORD" \
             --team-id "$APPLE_TEAM_ID" \
-            --wait
+            --wait 2>&1) || true
+
+          echo "$NOTARIZE_OUTPUT"
+
+          # Extract submission ID and check status
+          SUBMISSION_ID=$(echo "$NOTARIZE_OUTPUT" | grep "id:" | head -1 | awk '{print $2}')
+
+          if echo "$NOTARIZE_OUTPUT" | grep -q "status: Invalid"; then
+            echo "Notarization failed. Fetching detailed log..."
+            xcrun notarytool log "$SUBMISSION_ID" \
+              --apple-id "$APPLE_ID" \
+              --password "$APPLE_ID_PASSWORD" \
+              --team-id "$APPLE_TEAM_ID"
+            exit 1
+          fi
 
           # Staple the ticket to the app
           xcrun stapler staple "./archives/Mizu.app"
