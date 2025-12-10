@@ -148,6 +148,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "./archives/Mizu.zip,./archives/Mizu.dmg"
+          makeLatest: true
 
       - name: Cleanup keychain
         if: always()
