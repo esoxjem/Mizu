@@ -327,11 +327,12 @@
 				CODE_SIGN_ENTITLEMENTS = Mizu/Misc/Mizu.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = QTZUF46V7A;
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = QTZUF46V7A;
 				INFOPLIST_FILE = Mizu/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Mizu;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
