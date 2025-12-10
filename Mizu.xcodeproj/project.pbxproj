@@ -3,46 +3,27 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		60382F58297B146600F893C5 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60382F57297B146500F893C5 /* ServiceManagement.framework */; };
 		60382F61297B1F4400F893C5 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 60382F60297B1F4400F893C5 /* LaunchAtLogin */; };
-		6060A794297AFF75002B46E9 /* AutoLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6060A793297AFF75002B46E9 /* AutoLaunch.swift */; };
-		60801EFE24268F2D00B7008C /* PreferencesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60801EFD24268F2D00B7008C /* PreferencesPresenter.swift */; };
-		60801F0024268F7100B7008C /* PreferencesContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60801EFF24268F7100B7008C /* PreferencesContract.swift */; };
-		60801F032426970100B7008C /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60801F022426970100B7008C /* MenuBar.swift */; };
-		608A5EA5242653A300092E2C /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608A5EA4242653A300092E2C /* EventMonitor.swift */; };
-		608F028324266F1A00C75CC6 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608F028224266F1A00C75CC6 /* Preferences.swift */; };
-		608F0285242673AE00C75CC6 /* Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608F0284242673AE00C75CC6 /* Interval.swift */; };
-		60F57E602426B97E00A70DDE /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F57E5F2426B97E00A70DDE /* Reminder.swift */; };
-		60F57E622426B9ED00A70DDE /* MenuBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F57E612426B9ED00A70DDE /* MenuBarPresenter.swift */; };
-		60FDBDEB23A92B79007F7C29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FDBDEA23A92B79007F7C29 /* AppDelegate.swift */; };
-		60FDBDED23A92B79007F7C29 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FDBDEC23A92B79007F7C29 /* PreferencesViewController.swift */; };
 		60FDBDEF23A92B7A007F7C29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60FDBDEE23A92B7A007F7C29 /* Assets.xcassets */; };
-		60FDBDF223A92B7A007F7C29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60FDBDF023A92B7A007F7C29 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		60365B162EE9B3DA00B4D025 /* CLAUDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CLAUDE.md; sourceTree = "<group>"; };
 		60382F57297B146500F893C5 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
-		6060A793297AFF75002B46E9 /* AutoLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLaunch.swift; sourceTree = "<group>"; };
-		60801EFD24268F2D00B7008C /* PreferencesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesPresenter.swift; sourceTree = "<group>"; };
-		60801EFF24268F7100B7008C /* PreferencesContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesContract.swift; sourceTree = "<group>"; };
-		60801F022426970100B7008C /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
-		608A5EA4242653A300092E2C /* EventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
-		608F028224266F1A00C75CC6 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
-		608F0284242673AE00C75CC6 /* Interval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interval.swift; sourceTree = "<group>"; };
-		60F57E5F2426B97E00A70DDE /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
-		60F57E612426B9ED00A70DDE /* MenuBarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarPresenter.swift; sourceTree = "<group>"; };
 		60FDBDE723A92B79007F7C29 /* Mizu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mizu.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		60FDBDEA23A92B79007F7C29 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		60FDBDEC23A92B79007F7C29 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		60FDBDEE23A92B7A007F7C29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		60FDBDF123A92B7A007F7C29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		60FDBDF323A92B7A007F7C29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		60FDBDF423A92B7A007F7C29 /* Mizu.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mizu.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		60365B272EE9B3E500B4D025 /* Sources */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Sources; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		60FDBDE423A92B79007F7C29 /* Frameworks */ = {
@@ -65,40 +46,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		60801F01242696DA00B7008C /* MenuBar */ = {
-			isa = PBXGroup;
-			children = (
-				60801F022426970100B7008C /* MenuBar.swift */,
-				60F57E612426B9ED00A70DDE /* MenuBarPresenter.swift */,
-			);
-			path = MenuBar;
-			sourceTree = "<group>";
-		};
-		608A5EB22426694E00092E2C /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				60FDBDEA23A92B79007F7C29 /* AppDelegate.swift */,
-				60F57E632426BE6600A70DDE /* Reminder */,
-				60801F01242696DA00B7008C /* MenuBar */,
-				60EE704D23A93BDC00C3BBF9 /* Preferences */,
-			);
-			path = Sources;
-			sourceTree = "<group>";
-		};
-		60EE704D23A93BDC00C3BBF9 /* Preferences */ = {
-			isa = PBXGroup;
-			children = (
-				608A5EA4242653A300092E2C /* EventMonitor.swift */,
-				608F028224266F1A00C75CC6 /* Preferences.swift */,
-				60801EFF24268F7100B7008C /* PreferencesContract.swift */,
-				60801EFD24268F2D00B7008C /* PreferencesPresenter.swift */,
-				60FDBDEC23A92B79007F7C29 /* PreferencesViewController.swift */,
-				60FDBDF023A92B7A007F7C29 /* Main.storyboard */,
-				6060A793297AFF75002B46E9 /* AutoLaunch.swift */,
-			);
-			path = Preferences;
-			sourceTree = "<group>";
-		};
 		60EE704E23A93BEB00C3BBF9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,18 +62,10 @@
 			path = Misc;
 			sourceTree = "<group>";
 		};
-		60F57E632426BE6600A70DDE /* Reminder */ = {
-			isa = PBXGroup;
-			children = (
-				608F0284242673AE00C75CC6 /* Interval.swift */,
-				60F57E5F2426B97E00A70DDE /* Reminder.swift */,
-			);
-			path = Reminder;
-			sourceTree = "<group>";
-		};
 		60FDBDDE23A92B79007F7C29 = {
 			isa = PBXGroup;
 			children = (
+				60365B162EE9B3DA00B4D025 /* CLAUDE.md */,
 				60FDBDE923A92B79007F7C29 /* Mizu */,
 				60FDBDE823A92B79007F7C29 /* Products */,
 				60382F56297B146500F893C5 /* Frameworks */,
@@ -147,7 +86,7 @@
 				60FDBDF323A92B7A007F7C29 /* Info.plist */,
 				60EE705123A94BD000C3BBF9 /* Misc */,
 				60EE704E23A93BEB00C3BBF9 /* Resources */,
-				608A5EB22426694E00092E2C /* Sources */,
+				60365B272EE9B3E500B4D025 /* Sources */,
 			);
 			path = Mizu;
 			sourceTree = "<group>";
@@ -166,6 +105,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				60365B272EE9B3E500B4D025 /* Sources */,
 			);
 			name = Mizu;
 			packageProductDependencies = (
@@ -217,7 +159,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				60FDBDEF23A92B7A007F7C29 /* Assets.xcassets in Resources */,
-				60FDBDF223A92B7A007F7C29 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,32 +169,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6060A794297AFF75002B46E9 /* AutoLaunch.swift in Sources */,
-				60801F0024268F7100B7008C /* PreferencesContract.swift in Sources */,
-				608F0285242673AE00C75CC6 /* Interval.swift in Sources */,
-				60801F032426970100B7008C /* MenuBar.swift in Sources */,
-				608A5EA5242653A300092E2C /* EventMonitor.swift in Sources */,
-				60FDBDED23A92B79007F7C29 /* PreferencesViewController.swift in Sources */,
-				60801EFE24268F2D00B7008C /* PreferencesPresenter.swift in Sources */,
-				60F57E602426B97E00A70DDE /* Reminder.swift in Sources */,
-				608F028324266F1A00C75CC6 /* Preferences.swift in Sources */,
-				60FDBDEB23A92B79007F7C29 /* AppDelegate.swift in Sources */,
-				60F57E622426B9ED00A70DDE /* MenuBarPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		60FDBDF023A92B7A007F7C29 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				60FDBDF123A92B7A007F7C29 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		60FDBDF523A92B7A007F7C29 /* Debug */ = {
@@ -386,7 +305,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = QTZUF46V7A;
 				INFOPLIST_FILE = Mizu/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Mizu;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
@@ -412,7 +331,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = QTZUF46V7A;
 				INFOPLIST_FILE = Mizu/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Mizu;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
