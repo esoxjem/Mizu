@@ -3,6 +3,8 @@
 <plist version="1.0">
 <dict>
 	<key>method</key>
-	<string>mac-application</string>
+	<string>developer-id</string>
+	<key>signingStyle</key>
+	<string>automatic</string>
 </dict>
 </plist>
