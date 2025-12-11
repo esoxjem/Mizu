@@ -37,15 +37,23 @@ final class UpdaterService: ObservableObject {
 
     @Published private(set) var canCheckForUpdates = false
 
+    let updateAvailabilityState = UpdateAvailabilityState.shared
+
     private let updaterController: SPUStandardUpdaterController
     private let updaterDelegate = UpdaterDelegate()
+    private let gentleReminderDelegate: GentleUpdateReminderDelegate
     private var cancellable: AnyCancellable?
 
     private init() {
+        gentleReminderDelegate = GentleUpdateReminderDelegate(
+            updateState: UpdateAvailabilityState.shared,
+            notificationActor: NotificationActor.shared
+        )
+
         updaterController = SPUStandardUpdaterController(
             startingUpdater: true,
             updaterDelegate: updaterDelegate,
-            userDriverDelegate: nil
+            userDriverDelegate: gentleReminderDelegate
         )
         bindCanCheckForUpdates()
     }
@@ -57,6 +65,10 @@ final class UpdaterService: ObservableObject {
     }
 
     func checkForUpdates() {
+        updaterController.checkForUpdates(nil)
+    }
+
+    func installPendingUpdate() {
         updaterController.checkForUpdates(nil)
     }
 

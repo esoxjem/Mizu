@@ -109,6 +109,10 @@ struct PreferencesView: View {
 
     private var settingsMenu: some View {
         Menu {
+            if updaterService.updateAvailabilityState.isUpdateAvailable {
+                updateAvailableButton
+                Divider()
+            }
             Button("Check for Updates", action: actions.checkForUpdates)
                 .disabled(!updaterService.canCheckForUpdates)
             Divider()
@@ -119,12 +123,38 @@ struct PreferencesView: View {
             Divider()
             Button("Quit Mizu", action: actions.quitApplication)
         } label: {
-            Image(systemName: "gearshape")
-                .font(.system(size: 14))
-                .foregroundColor(.secondary)
+            settingsMenuIcon
         }
         .menuStyle(.borderlessButton)
         .menuIndicator(.hidden)
+    }
+
+    private var updateAvailableButton: some View {
+        Button(action: updaterService.installPendingUpdate) {
+            Label(updateButtonTitle, systemImage: "arrow.down.circle.fill")
+        }
+    }
+
+    private var updateButtonTitle: String {
+        if let version = updaterService.updateAvailabilityState.availableVersion {
+            return "Install Update (\(version))"
+        }
+        return "Install Update"
+    }
+
+    private var settingsMenuIcon: some View {
+        ZStack(alignment: .topTrailing) {
+            Image(systemName: "gearshape")
+                .font(.system(size: 14))
+                .foregroundColor(.secondary)
+
+            if updaterService.updateAvailabilityState.isUpdateAvailable {
+                Circle()
+                    .fill(Color.red)
+                    .frame(width: 6, height: 6)
+                    .offset(x: 2, y: -2)
+            }
+        }
     }
 }
 

@@ -1,5 +1,6 @@
 import AppKit
 import SwiftUI
+import Combine
 
 @MainActor
 final class MenuBarController {
@@ -7,7 +8,9 @@ final class MenuBarController {
     private let popover = NSPopover()
     private let settings = AppSettings.shared
     private let reminderService = ReminderService()
+    private let updateState = UpdateAvailabilityState.shared
     private var clickOutsideMonitor: Any?
+    private var updateStateCancellable: AnyCancellable?
 
     init() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
@@ -15,6 +18,7 @@ final class MenuBarController {
         configurePopover()
         monitorClicksOutsidePopover()
         startReminder()
+        observeUpdateAvailability()
     }
 
     private func configureStatusBarButton() {
@@ -81,9 +85,56 @@ final class MenuBarController {
         }
     }
 
+    private func observeUpdateAvailability() {
+        updateStateCancellable = updateState.$isUpdateAvailable
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isAvailable in
+                self?.updateBadgeVisibility(showBadge: isAvailable)
+            }
+    }
+
+    private func updateBadgeVisibility(showBadge: Bool) {
+        guard let button = statusItem.button else { return }
+
+        if showBadge {
+            button.image = createBadgedStatusBarImage()
+        } else {
+            button.image = NSImage(named: NSImage.Name("StatusBarImage"))
+        }
+    }
+
+    private func createBadgedStatusBarImage() -> NSImage? {
+        guard let baseImage = NSImage(named: NSImage.Name("StatusBarImage")) else {
+            return nil
+        }
+
+        let badgeSize: CGFloat = 6
+        let imageSize = baseImage.size
+
+        let compositeImage = NSImage(size: imageSize, flipped: false) { rect in
+            baseImage.draw(in: rect)
+
+            let badgeRect = NSRect(
+                x: imageSize.width - badgeSize - 1,
+                y: imageSize.height - badgeSize - 1,
+                width: badgeSize,
+                height: badgeSize
+            )
+
+            NSColor.systemRed.setFill()
+            NSBezierPath(ovalIn: badgeRect).fill()
+
+            return true
+        }
+
+        compositeImage.isTemplate = true
+        return compositeImage
+    }
+
     deinit {
         if let monitor = clickOutsideMonitor {
             NSEvent.removeMonitor(monitor)
         }
+        updateStateCancellable?.cancel()
     }
 }

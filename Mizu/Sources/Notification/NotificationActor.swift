@@ -74,4 +74,26 @@ actor NotificationActor {
             logger.error("Failed to deliver notification: \(error.localizedDescription)")
         }
     }
+
+    func deliverUpdateAvailableNotification(version: String) async {
+        logger.info("Delivering update notification for version \(version)")
+
+        let content = UNMutableNotificationContent()
+        content.title = "Update Available"
+        content.body = "Mizu \(version) is ready to install. Click the menu bar icon to update."
+        content.sound = .default
+
+        let request = UNNotificationRequest(
+            identifier: "mizu-update-available",
+            content: content,
+            trigger: nil
+        )
+
+        do {
+            try await notificationCenter.add(request)
+            logger.info("Update notification delivered successfully")
+        } catch {
+            logger.error("Failed to deliver update notification: \(error.localizedDescription)")
+        }
+    }
 }
