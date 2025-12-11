@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		60382F58297B146600F893C5 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60382F57297B146500F893C5 /* ServiceManagement.framework */; };
+		6073DEB92EEAA5D00053229C /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 60365C002EEA000000000002 /* Sparkle */; };
 		60FDBDEF23A92B7A007F7C29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60FDBDEE23A92B7A007F7C29 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6073DEB92EEAA5D00053229C /* Sparkle in Frameworks */,
 				60382F58297B146600F893C5 /* ServiceManagement.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
