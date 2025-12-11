@@ -14,10 +14,19 @@ jobs:
     env:
       KEYCHAIN_NAME: build.keychain
       KEYCHAIN_PASSWORD: ${{ github.run_id }}
+      SPARKLE_PRIVATE_KEY: ${{ secrets.SPARKLE_PRIVATE_KEY }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Download Sparkle tools
+        run: |
+          curl -LO https://github.com/sparkle-project/Sparkle/releases/download/2.8.1/Sparkle-2.8.1.tar.xz
+          mkdir sparkle-tools
+          tar -xf Sparkle-2.8.1.tar.xz -C sparkle-tools
 
       - name: Install certificate
         env:
@@ -143,6 +152,28 @@ jobs:
         run: |
           cd ./archives
           zip -r -X Mizu.zip Mizu.app
+
+      - name: Generate appcast
+        env:
+          TAG_NAME: ${{ github.ref_name }}
+        run: |
+          mkdir -p updates
+          cp ./archives/Mizu.zip ./updates/
+
+          echo "$SPARKLE_PRIVATE_KEY" | ./sparkle-tools/bin/generate_appcast \
+            --ed-key-file - \
+            --download-url-prefix "https://github.com/esoxjem/Mizu/releases/download/${TAG_NAME}/" \
+            ./updates
+
+          mv ./updates/appcast.xml ./appcast.xml
+
+      - name: Commit appcast
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add appcast.xml
+          git diff --staged --quiet || git commit -m "Update appcast.xml for ${{ github.ref_name }}"
+          git push origin HEAD:main
 
       - name: Release
         uses: ncipollo/release-action@v1

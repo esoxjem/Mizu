@@ -13,6 +13,10 @@ final class AppSettings: ObservableObject {
         didSet { syncLaunchAtLoginState() }
     }
 
+    @AppStorage("automaticallyCheckForUpdates") var isAutoUpdateEnabled: Bool = true {
+        didSet { syncAutoUpdateState() }
+    }
+
     var selectedInterval: ReminderInterval {
         get { ReminderInterval(rawValue: intervalRawValue) ?? .oneHour }
         set { intervalRawValue = newValue.rawValue }
@@ -20,6 +24,7 @@ final class AppSettings: ObservableObject {
 
     private init() {
         syncLaunchAtLoginState()
+        syncAutoUpdateState()
     }
 
     private func syncLaunchAtLoginState() {
@@ -28,5 +33,9 @@ final class AppSettings: ObservableObject {
         } else {
             LaunchAtLoginService.shared.disable()
         }
+    }
+
+    private func syncAutoUpdateState() {
+        UpdaterService.shared.automaticallyChecksForUpdates = isAutoUpdateEnabled
     }
 }

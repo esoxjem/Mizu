@@ -26,6 +26,10 @@ final class PreferencesActions {
         NSApp.terminate(nil)
     }
 
+    func checkForUpdates() {
+        UpdaterService.shared.checkForUpdates()
+    }
+
     private func open(urlString: String) {
         guard let url = URL(string: urlString) else { return }
         NSWorkspace.shared.open(url)

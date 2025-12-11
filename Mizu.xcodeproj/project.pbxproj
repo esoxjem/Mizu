@@ -116,6 +116,9 @@
 				60365B272EE9B3E500B4D025 /* Sources */,
 			);
 			name = Mizu;
+			packageProductDependencies = (
+				60365C002EEA000000000002 /* Sparkle */,
+			);
 			productName = Mizu;
 			productReference = 60FDBDE723A92B79007F7C29 /* Mizu.app */;
 			productType = "com.apple.product-type.application";
@@ -146,6 +149,7 @@
 			);
 			mainGroup = 60FDBDDE23A92B79007F7C29;
 			packageReferences = (
+				60365C002EEA000000000001 /* XCRemoteSwiftPackageReference "Sparkle" */,
 			);
 			productRefGroup = 60FDBDE823A92B79007F7C29 /* Products */;
 			projectDirPath = "";
@@ -381,6 +385,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		60365C002EEA000000000001 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		60365C002EEA000000000002 /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 60365C002EEA000000000001 /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 60FDBDDF23A92B79007F7C29 /* Project object */;
 }

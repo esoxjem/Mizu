@@ -3,6 +3,7 @@ import AppKit
 
 struct PreferencesView: View {
     @ObservedObject var settings: AppSettings
+    @ObservedObject private var updaterService = UpdaterService.shared
     var onIntervalChanged: (() -> Void)?
 
     private let actions = PreferencesActions.shared
@@ -17,6 +18,8 @@ struct PreferencesView: View {
             settingToggle(label: "Play Sound", isOn: $settings.isSoundEnabled)
             sectionDivider
             settingToggle(label: "Launch on startup", isOn: $settings.isLaunchAtLoginEnabled)
+            sectionDivider
+            settingToggle(label: "Automatically check for updates", isOn: $settings.isAutoUpdateEnabled)
             sectionDivider
             Spacer()
             footerText
@@ -113,6 +116,9 @@ struct PreferencesView: View {
 
     private var settingsMenu: some View {
         Menu {
+            Button("Check for Updates...", action: actions.checkForUpdates)
+                .disabled(!updaterService.canCheckForUpdates)
+            Divider()
             Button("Notification Settings", action: actions.openNotificationSettings)
             Divider()
             Button("@ES0XJEM", action: actions.openTwitter)
