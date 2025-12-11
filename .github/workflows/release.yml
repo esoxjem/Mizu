@@ -22,6 +22,27 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Validate version matches tag
+        env:
+          TAG_NAME: ${{ github.ref_name }}
+        run: |
+          TAG_VERSION="${TAG_NAME#v}"
+
+          if ! echo "$TAG_VERSION" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "::error::Invalid tag format '$TAG_NAME'. Expected: vX.Y.Z"
+            exit 1
+          fi
+
+          XCODE_VERSION=$(grep -A1 'MARKETING_VERSION' Mizu.xcodeproj/project.pbxproj | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -1)
+
+          if [ "$TAG_VERSION" != "$XCODE_VERSION" ]; then
+            echo "::error::Version mismatch! Tag is $TAG_VERSION but Xcode MARKETING_VERSION is $XCODE_VERSION"
+            echo "Please update MARKETING_VERSION in Xcode to $TAG_VERSION before tagging."
+            exit 1
+          fi
+
+          echo "✓ Version validated: $TAG_VERSION"
+
       - name: Download Sparkle tools
         run: |
           curl -LO https://github.com/sparkle-project/Sparkle/releases/download/2.8.1/Sparkle-2.8.1.tar.xz
