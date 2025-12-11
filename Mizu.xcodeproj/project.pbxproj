@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		60382F58297B146600F893C5 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60382F57297B146500F893C5 /* ServiceManagement.framework */; };
-		60382F61297B1F4400F893C5 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 60382F60297B1F4400F893C5 /* LaunchAtLogin */; };
 		60FDBDEF23A92B7A007F7C29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60FDBDEE23A92B7A007F7C29 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -34,7 +33,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60382F61297B1F4400F893C5 /* LaunchAtLogin in Frameworks */,
 				60382F58297B146600F893C5 /* ServiceManagement.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -118,9 +116,6 @@
 				60365B272EE9B3E500B4D025 /* Sources */,
 			);
 			name = Mizu;
-			packageProductDependencies = (
-				60382F60297B1F4400F893C5 /* LaunchAtLogin */,
-			);
 			productName = Mizu;
 			productReference = 60FDBDE723A92B79007F7C29 /* Mizu.app */;
 			productType = "com.apple.product-type.application";
@@ -151,7 +146,6 @@
 			);
 			mainGroup = 60FDBDDE23A92B79007F7C29;
 			packageReferences = (
-				60382F5F297B1F4400F893C5 /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */,
 			);
 			productRefGroup = 60FDBDE823A92B79007F7C29 /* Products */;
 			projectDirPath = "";
@@ -387,25 +381,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		60382F5F297B1F4400F893C5 /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin-Modern";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		60382F60297B1F4400F893C5 /* LaunchAtLogin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 60382F5F297B1F4400F893C5 /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */;
-			productName = LaunchAtLogin;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 60FDBDDF23A92B79007F7C29 /* Project object */;
 }

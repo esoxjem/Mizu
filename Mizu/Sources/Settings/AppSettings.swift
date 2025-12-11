@@ -1,6 +1,5 @@
 import Foundation
 import SwiftUI
-import LaunchAtLogin
 
 /// Central settings store using @AppStorage for automatic UserDefaults persistence.
 /// Keys match existing UserDefaults keys for backward compatibility.
@@ -14,10 +13,14 @@ final class AppSettings: ObservableObject {
     /// Whether notification sound is enabled
     @AppStorage("sound") var isSoundEnabled: Bool = true
 
-    /// Whether to launch at login - synced with LaunchAtLogin framework
+    /// Whether to launch at login - synced with SMAppService
     @AppStorage("startup") var isLaunchAtLoginEnabled: Bool = false {
         didSet {
-            LaunchAtLogin.isEnabled = isLaunchAtLoginEnabled
+            if isLaunchAtLoginEnabled {
+                LaunchAtLoginService.shared.enable()
+            } else {
+                LaunchAtLoginService.shared.disable()
+            }
         }
     }
 
@@ -31,7 +34,9 @@ final class AppSettings: ObservableObject {
     }
 
     private init() {
-        // Sync LaunchAtLogin state on initialization to ensure consistency
-        LaunchAtLogin.isEnabled = isLaunchAtLoginEnabled
+        // Sync SMAppService state on initialization to ensure consistency
+        if isLaunchAtLoginEnabled {
+            LaunchAtLoginService.shared.enable()
+        }
     }
 }
