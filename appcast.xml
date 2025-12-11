@@ -3,12 +3,12 @@
     <channel>
         <title>Mizu</title>
         <item>
-            <title>2.3.0</title>
-            <pubDate>Thu, 11 Dec 2025 09:00:41 +0000</pubDate>
+            <title>2.3.1</title>
+            <pubDate>Thu, 11 Dec 2025 09:27:27 +0000</pubDate>
             <sparkle:version>4</sparkle:version>
-            <sparkle:shortVersionString>2.3.0</sparkle:shortVersionString>
+            <sparkle:shortVersionString>2.3.1</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/esoxjem/Mizu/releases/download/v2.3.0/Mizu.zip" length="2874483" type="application/octet-stream" sparkle:edSignature="DVV6BtgSjwnvBH/FjYV/w07glq2hDojfvwr43teTygylvM7g/15LxQVCoGz+vJiCiCj37Cn0u5PBcYpl7YlDAg=="/>
+            <enclosure url="https://github.com/esoxjem/Mizu/releases/download/v2.3.1/Mizu.zip" length="2877243" type="application/octet-stream" sparkle:edSignature="T1wt5zbcopCnAsBxoXFXvpj4t3B2o3pt9Cmw/ngqF5YEqv+SeWSF6lGHJHXnBKdog/xAnXsxl6YwyV0KrRTtDA=="/>
         </item>
     </channel>
 </rss>
