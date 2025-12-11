@@ -36,5 +36,7 @@
 	<string>https://raw.githubusercontent.com/esoxjem/Mizu/main/appcast.xml</string>
 	<key>SUPublicEDKey</key>
 	<string>xkW7zLzGFcZcHpOGETA3WLA+5SkTfRGUJvGjGIJsBFI=</string>
+	<key>SUEnableInstallerLauncherService</key>
+	<true/>
 </dict>
 </plist>

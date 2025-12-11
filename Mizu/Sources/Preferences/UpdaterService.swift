@@ -1,6 +1,35 @@
 import Foundation
 import Sparkle
 import Combine
+import os.log
+
+final class UpdaterDelegate: NSObject, SPUUpdaterDelegate {
+    private let logger = Logger(subsystem: "com.esoxjem.mizu", category: "Updater")
+
+    func updater(_ updater: SPUUpdater, didAbortWithError error: any Error) {
+        logger.error("Update aborted: \(error.localizedDescription)")
+    }
+
+    func updater(_ updater: SPUUpdater, didFinishLoading appcast: SUAppcast) {
+        logger.info("Appcast loaded with \(appcast.items.count) items")
+    }
+
+    func updaterDidNotFindUpdate(_ updater: SPUUpdater) {
+        logger.info("No update available")
+    }
+
+    func updater(_ updater: SPUUpdater, didFindValidUpdate item: SUAppcastItem) {
+        logger.info("Found update: \(item.displayVersionString) (build \(item.versionString))")
+    }
+
+    func updater(_ updater: SPUUpdater, didDownloadUpdate item: SUAppcastItem) {
+        logger.info("Downloaded update: \(item.displayVersionString)")
+    }
+
+    func updater(_ updater: SPUUpdater, willInstallUpdate item: SUAppcastItem) {
+        logger.info("Installing update: \(item.displayVersionString)")
+    }
+}
 
 @MainActor
 final class UpdaterService: ObservableObject {
@@ -9,12 +38,13 @@ final class UpdaterService: ObservableObject {
     @Published private(set) var canCheckForUpdates = false
 
     private let updaterController: SPUStandardUpdaterController
+    private let updaterDelegate = UpdaterDelegate()
     private var cancellable: AnyCancellable?
 
     private init() {
         updaterController = SPUStandardUpdaterController(
             startingUpdater: true,
-            updaterDelegate: nil,
+            updaterDelegate: updaterDelegate,
             userDriverDelegate: nil
         )
         bindCanCheckForUpdates()
