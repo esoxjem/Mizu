@@ -61,6 +61,8 @@ final class MenuBarController {
             popover.close()
         } else {
             popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
+            // Make the popover's window key to receive keyboard focus
+            popover.contentViewController?.view.window?.makeKeyAndOrderFront(nil)
         }
     }
 
