@@ -108,7 +108,7 @@ struct PreferencesView: View {
     }
 
     private var settingsMenu: some View {
-        Menu("") {
+        Menu {
             Button("Check for Updates", action: actions.checkForUpdates)
                 .disabled(!updaterService.canCheckForUpdates)
             Divider()
@@ -118,8 +118,13 @@ struct PreferencesView: View {
             Button("GitHub", action: actions.openGitHub)
             Divider()
             Button("Quit Mizu", action: actions.quitApplication)
+        } label: {
+            Image(systemName: "gearshape")
+                .font(.system(size: 14))
+                .foregroundColor(.secondary)
         }
         .menuStyle(.borderlessButton)
+        .menuIndicator(.hidden)
     }
 }
 
