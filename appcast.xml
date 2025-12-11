@@ -1,8 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
     <channel>
-        <title>Mizu Updates</title>
-        <description>Water reminder app updates</description>
-        <language>en</language>
+        <title>Mizu</title>
+        <item>
+            <title>1.0.1</title>
+            <pubDate>Thu, 11 Dec 2025 08:04:13 +0000</pubDate>
+            <sparkle:version>1</sparkle:version>
+            <sparkle:shortVersionString>1.0.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/esoxjem/Mizu/releases/download/v2.2.0/Mizu.zip" length="2878333" type="application/octet-stream" sparkle:edSignature="FKlQEtiASFsv50Ghes2GdETzqwVgcI9rFDx/ppm9hYeR6FKGrPDxnLK4H6WxV9TH+ompucIzvHH0rJq8uno2Dw=="/>
+        </item>
     </channel>
 </rss>
