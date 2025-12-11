@@ -10,7 +10,6 @@ struct PreferencesView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            settingsMenuBar
             appHeader
             Spacer().frame(height: 20)
             intervalSelector
@@ -18,22 +17,15 @@ struct PreferencesView: View {
             settingToggle(label: "Play Sound", isOn: $settings.isSoundEnabled)
             sectionDivider
             settingToggle(label: "Launch on startup", isOn: $settings.isLaunchAtLoginEnabled)
-            sectionDivider
-            settingToggle(label: "Automatically check for updates", isOn: $settings.isAutoUpdateEnabled)
-            sectionDivider
             Spacer()
             footerText
         }
         .frame(width: 350, height: 400)
-    }
-
-    private var settingsMenuBar: some View {
-        HStack {
-            Spacer()
+        .overlay(alignment: .topTrailing) {
             settingsMenu
+                .padding(.top, 12)
+                .padding(.trailing, 12)
         }
-        .padding(.top, 8)
-        .padding(.trailing, 8)
     }
 
     private var appHeader: some View {
@@ -45,6 +37,7 @@ struct PreferencesView: View {
             Text("mizu")
                 .font(Typography.title)
         }
+        .padding(.top, 24)
     }
 
     private var intervalSelector: some View {
@@ -111,12 +104,12 @@ struct PreferencesView: View {
     private var footerText: some View {
         Text("Made with ❤️ in Berlin")
             .font(Typography.footer)
-            .padding(.bottom, 13)
+            .padding(.bottom, 32)
     }
 
     private var settingsMenu: some View {
-        Menu {
-            Button("Check for Updates...", action: actions.checkForUpdates)
+        Menu("") {
+            Button("Check for Updates", action: actions.checkForUpdates)
                 .disabled(!updaterService.canCheckForUpdates)
             Divider()
             Button("Notification Settings", action: actions.openNotificationSettings)
@@ -125,18 +118,8 @@ struct PreferencesView: View {
             Button("GitHub", action: actions.openGitHub)
             Divider()
             Button("Quit Mizu", action: actions.quitApplication)
-        } label: {
-            gearIcon
         }
         .menuStyle(.borderlessButton)
-        .menuIndicator(.hidden)
-        .frame(width: 24, height: 24)
-    }
-
-    private var gearIcon: some View {
-        Image(systemName: "gear")
-            .font(.system(size: 14))
-            .foregroundColor(.secondary)
     }
 }
 
