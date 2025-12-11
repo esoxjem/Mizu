@@ -1,58 +1,48 @@
 import AppKit
 import SwiftUI
 
-/// Unified controller for the menu bar status item and popover.
-/// Combines the responsibilities of MenuBar and MenuBarPresenter into a single @MainActor class.
 @MainActor
 final class MenuBarController {
     private let statusItem: NSStatusItem
     private let popover = NSPopover()
     private let settings = AppSettings.shared
     private let reminderService = ReminderService()
-    private var eventMonitor: Any?
+    private var clickOutsideMonitor: Any?
 
     init() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-
-        setupStatusBarButton()
-        setupPopover()
-        setupEventMonitor()
+        configureStatusBarButton()
+        configurePopover()
+        monitorClicksOutsidePopover()
         startReminder()
     }
 
-    // MARK: - Setup
-
-    private func setupStatusBarButton() {
-        if let button = statusItem.button {
-            button.image = NSImage(named: NSImage.Name("StatusBarImage"))
-            button.action = #selector(togglePopover)
-            button.target = self
-        }
+    private func configureStatusBarButton() {
+        guard let button = statusItem.button else { return }
+        button.image = NSImage(named: NSImage.Name("StatusBarImage"))
+        button.action = #selector(togglePopover)
+        button.target = self
     }
 
-    private func setupPopover() {
-        let hostingController = PreferencesHostingController(
+    private func configurePopover() {
+        popover.contentViewController = PreferencesHostingController(
             settings: settings,
-            onIntervalChanged: { [weak self] in
-                self?.resetReminder()
-            }
+            onIntervalChanged: { [weak self] in self?.resetReminder() }
         )
-        popover.contentViewController = hostingController
         popover.behavior = .transient
     }
 
-    private func setupEventMonitor() {
-        // Monitor for clicks outside the popover to close it
-        // The .transient behavior should handle most cases, but this ensures
-        // consistent behavior with the original implementation
-        eventMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.leftMouseDown, .rightMouseDown]) { [weak self] _ in
-            if self?.popover.isShown == true {
-                self?.popover.close()
-            }
-        }
+    private func monitorClicksOutsidePopover() {
+        clickOutsideMonitor = NSEvent.addGlobalMonitorForEvents(
+            matching: [.leftMouseDown, .rightMouseDown],
+            handler: { [weak self] _ in self?.closePopoverIfVisible() }
+        )
     }
 
-    // MARK: - Actions
+    private func closePopoverIfVisible() {
+        guard popover.isShown else { return }
+        popover.close()
+    }
 
     @objc private func togglePopover() {
         guard let button = statusItem.button else { return }
@@ -60,13 +50,18 @@ final class MenuBarController {
         if popover.isShown {
             popover.close()
         } else {
-            popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
-            // Make the popover's window key to receive keyboard focus
-            popover.contentViewController?.view.window?.makeKeyAndOrderFront(nil)
+            showPopover(relativeTo: button)
         }
     }
 
-    // MARK: - Reminder Management
+    private func showPopover(relativeTo button: NSStatusBarButton) {
+        popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
+        makePopoverKeyWindow()
+    }
+
+    private func makePopoverKeyWindow() {
+        popover.contentViewController?.view.window?.makeKeyAndOrderFront(nil)
+    }
 
     private func startReminder() {
         Task {
@@ -87,7 +82,7 @@ final class MenuBarController {
     }
 
     deinit {
-        if let monitor = eventMonitor {
+        if let monitor = clickOutsideMonitor {
             NSEvent.removeMonitor(monitor)
         }
     }

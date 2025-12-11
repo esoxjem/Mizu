@@ -1,162 +1,147 @@
 import SwiftUI
 import AppKit
 
-/// SwiftUI preferences view replacing the NIB-based PreferencesViewController.
-/// Matches the original layout: icon, title, slider, toggles, and settings menu.
 struct PreferencesView: View {
     @ObservedObject var settings: AppSettings
     var onIntervalChanged: (() -> Void)?
 
-    // Avenir Next fonts
-    private let titleFont = Font(NSFont(name: "AvenirNext-UltraLight", size: 24)!)
-    private let bodyFont = Font(NSFont(name: "AvenirNext-Medium", size: 13)!)
-    private let captionFont = Font(NSFont(name: "AvenirNext-Regular", size: 10)!)
-    private let footerFont = Font(NSFont(name: "AvenirNext-UltraLight", size: 13)!)
+    private let actions = PreferencesActions.shared
 
     var body: some View {
         VStack(spacing: 0) {
-            // Settings gear button at top right
-            HStack {
-                Spacer()
-                settingsMenu
-            }
-            .padding(.top, 8)
-            .padding(.trailing, 8)
-
-            // Header with app icon and title
-            VStack(spacing: 4) {
-                Image(nsImage: NSImage(named: NSImage.applicationIconName)!)
-                    .resizable()
-                    .frame(width: 48, height: 48)
-
-                Text("mizu")
-                    .font(titleFont)
-            }
-
+            settingsMenuBar
+            appHeader
             Spacer().frame(height: 20)
-
-            // Interval section - label on left, slider on right
-            HStack(alignment: .top, spacing: 12) {
-                Text("Notify me every:")
-                    .font(bodyFont)
-                    .fixedSize()
-
-                VStack(alignment: .leading, spacing: 2) {
-                    Slider(
-                        value: Binding(
-                            get: { Double(settings.intervalRawValue) },
-                            set: {
-                                settings.intervalRawValue = Int($0)
-                                onIntervalChanged?()
-                            }
-                        ),
-                        in: 0...4,
-                        step: 1
-                    )
-                    .controlSize(.small)
-
-                    HStack {
-                        Text("30 mins")
-                        Spacer()
-                        Text("1 hour")
-                        Spacer()
-                        Text("2 hours")
-                    }
-                    .font(captionFont)
-                    .foregroundColor(.secondary)
-                }
-                .frame(width: 156)
-            }
-            .padding(.horizontal, 63)
-
-            Divider()
-                .frame(width: 224)
-                .padding(.vertical, 20)
-
-            // Play Sound toggle
-            HStack(spacing: 12) {
-                Toggle("", isOn: $settings.isSoundEnabled)
-                    .toggleStyle(.switch)
-                    .labelsHidden()
-                    .controlSize(.small)
-
-                Text("Play Sound")
-                    .font(bodyFont)
-                    .fixedSize()
-
-                Spacer()
-            }
-            .padding(.horizontal, 63)
-
-            Divider()
-                .frame(width: 224)
-                .padding(.vertical, 20)
-
-            // Launch on startup toggle
-            HStack(spacing: 12) {
-                Toggle("", isOn: $settings.isLaunchAtLoginEnabled)
-                    .toggleStyle(.switch)
-                    .labelsHidden()
-                    .controlSize(.small)
-
-                Text("Launch on startup")
-                    .font(bodyFont)
-                    .fixedSize()
-
-                Spacer()
-            }
-            .padding(.horizontal, 63)
-
-            Divider()
-                .frame(width: 224)
-                .padding(.vertical, 20)
-
+            intervalSelector
+            sectionDivider
+            settingToggle(label: "Play Sound", isOn: $settings.isSoundEnabled)
+            sectionDivider
+            settingToggle(label: "Launch on startup", isOn: $settings.isLaunchAtLoginEnabled)
+            sectionDivider
             Spacer()
-
-            // Footer
-            Text("Made with ❤️ in Berlin")
-                .font(footerFont)
-                .padding(.bottom, 13)
+            footerText
         }
         .frame(width: 350, height: 400)
     }
 
+    private var settingsMenuBar: some View {
+        HStack {
+            Spacer()
+            settingsMenu
+        }
+        .padding(.top, 8)
+        .padding(.trailing, 8)
+    }
+
+    private var appHeader: some View {
+        VStack(spacing: 4) {
+            Image(nsImage: NSImage(named: NSImage.applicationIconName)!)
+                .resizable()
+                .frame(width: 48, height: 48)
+
+            Text("mizu")
+                .font(Typography.title)
+        }
+    }
+
+    private var intervalSelector: some View {
+        HStack(alignment: .top, spacing: 12) {
+            Text("Notify me every:")
+                .font(Typography.body)
+                .fixedSize()
+
+            VStack(alignment: .leading, spacing: 2) {
+                Slider(value: intervalBinding, in: 0...4, step: 1)
+                    .controlSize(.small)
+
+                intervalLabels
+            }
+            .frame(width: 156)
+        }
+        .padding(.horizontal, 63)
+    }
+
+    private var intervalBinding: Binding<Double> {
+        Binding(
+            get: { Double(settings.intervalRawValue) },
+            set: { newValue in
+                settings.intervalRawValue = Int(newValue)
+                onIntervalChanged?()
+            }
+        )
+    }
+
+    private var intervalLabels: some View {
+        HStack {
+            Text("30 mins")
+            Spacer()
+            Text("1 hour")
+            Spacer()
+            Text("2 hours")
+        }
+        .font(Typography.caption)
+        .foregroundColor(.secondary)
+    }
+
+    private func settingToggle(label: String, isOn: Binding<Bool>) -> some View {
+        HStack(spacing: 12) {
+            Toggle("", isOn: isOn)
+                .toggleStyle(.switch)
+                .labelsHidden()
+                .controlSize(.small)
+
+            Text(label)
+                .font(Typography.body)
+                .fixedSize()
+
+            Spacer()
+        }
+        .padding(.horizontal, 63)
+    }
+
+    private var sectionDivider: some View {
+        Divider()
+            .frame(width: 224)
+            .padding(.vertical, 20)
+    }
+
+    private var footerText: some View {
+        Text("Made with ❤️ in Berlin")
+            .font(Typography.footer)
+            .padding(.bottom, 13)
+    }
+
     private var settingsMenu: some View {
         Menu {
-            Button("Notification Settings") {
-                openNotificationSettings()
-            }
+            Button("Notification Settings", action: actions.openNotificationSettings)
             Divider()
-            Button("@ES0XJEM") {
-                openURL("https://www.twitter.com/ES0XJEM")
-            }
-            Button("GitHub") {
-                openURL("https://www.github.com/esoxjem/Mizu")
-            }
+            Button("@ES0XJEM", action: actions.openTwitter)
+            Button("GitHub", action: actions.openGitHub)
             Divider()
-            Button("Quit Mizu") {
-                NSApp.terminate(nil)
-            }
+            Button("Quit Mizu", action: actions.quitApplication)
         } label: {
-            Image(systemName: "gear")
-                .font(.system(size: 14))
-                .foregroundColor(.secondary)
+            gearIcon
         }
         .menuStyle(.borderlessButton)
         .menuIndicator(.hidden)
         .frame(width: 24, height: 24)
     }
 
-    private func openNotificationSettings() {
-        if let url = URL(string: "x-apple.systempreferences:com.apple.Notifications-Settings.extension") {
-            NSWorkspace.shared.open(url)
-        }
+    private var gearIcon: some View {
+        Image(systemName: "gear")
+            .font(.system(size: 14))
+            .foregroundColor(.secondary)
     }
+}
 
-    private func openURL(_ urlString: String) {
-        if let url = URL(string: urlString) {
-            NSWorkspace.shared.open(url)
-        }
+private enum Typography {
+    static let title = avenirFont(weight: "UltraLight", size: 24)
+    static let body = avenirFont(weight: "Medium", size: 13)
+    static let caption = avenirFont(weight: "Regular", size: 10)
+    static let footer = avenirFont(weight: "UltraLight", size: 13)
+
+    private static func avenirFont(weight: String, size: CGFloat) -> Font {
+        Font(NSFont(name: "AvenirNext-\(weight)", size: size)!)
     }
 }
 
