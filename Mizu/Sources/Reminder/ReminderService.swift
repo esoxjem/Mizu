@@ -39,7 +39,7 @@ actor ReminderService {
 
     private func waitAndNotify(interval: ReminderInterval, soundEnabled: Bool) async -> Bool {
         do {
-            try await Task.sleep(for: .seconds(interval.seconds))
+            try await Task.sleep(for: .seconds(interval.seconds), clock: .suspending)
             guard !Task.isCancelled else {
                 logger.info("Reminder task cancelled during sleep")
                 return false

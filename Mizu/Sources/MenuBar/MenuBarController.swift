@@ -11,6 +11,8 @@ final class MenuBarController {
     private let updateState = UpdateAvailabilityState.shared
     private var clickOutsideMonitor: Any?
     private var updateStateCancellable: AnyCancellable?
+    private var sleepObserver: NSObjectProtocol?
+    private var wakeObserver: NSObjectProtocol?
 
     init() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
@@ -19,6 +21,7 @@ final class MenuBarController {
         monitorClicksOutsidePopover()
         startReminder()
         observeUpdateAvailability()
+        observeSleepWakeEvents()
     }
 
     private func configureStatusBarButton() {
@@ -93,6 +96,37 @@ final class MenuBarController {
             }
     }
 
+    private func observeSleepWakeEvents() {
+        sleepObserver = NSWorkspace.shared.notificationCenter.addObserver(
+            forName: NSWorkspace.willSleepNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            self?.handleSystemSleep()
+        }
+
+        wakeObserver = NSWorkspace.shared.notificationCenter.addObserver(
+            forName: NSWorkspace.didWakeNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            self?.handleSystemWake()
+        }
+    }
+
+    private func handleSystemSleep() {
+        Task { await reminderService.stopReminder() }
+    }
+
+    private func handleSystemWake() {
+        Task {
+            await reminderService.startReminder(
+                interval: settings.selectedInterval,
+                soundEnabled: settings.isSoundEnabled
+            )
+        }
+    }
+
     private func updateBadgeVisibility(showBadge: Bool) {
         guard let button = statusItem.button else { return }
 
@@ -136,5 +170,11 @@ final class MenuBarController {
             NSEvent.removeMonitor(monitor)
         }
         updateStateCancellable?.cancel()
+        if let sleepObserver {
+            NSWorkspace.shared.notificationCenter.removeObserver(sleepObserver)
+        }
+        if let wakeObserver {
+            NSWorkspace.shared.notificationCenter.removeObserver(wakeObserver)
+        }
     }
 }
