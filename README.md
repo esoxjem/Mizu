@@ -8,6 +8,11 @@ production app with separate settings, notification permissions, and login-item
 registration. A **Dev** label in the menu bar identifies the development app;
 production updates are disabled in this variant.
 
+Notifications default to persistent alerts that stay visible until dismissed.
+If macOS has already saved a temporary style, open **System Settings →
+Notifications → Mizu** (or **Mizu Dev**) and choose **Persistent** (called
+**Alerts** on older macOS versions).
+
 In Xcode, run the `Mizu` scheme with the Debug configuration, or build and launch
 and refresh the installed dev app from the command line:
 

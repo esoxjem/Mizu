@@ -34,6 +34,8 @@
 	<true/>
 	<key>NSSupportsSuddenTermination</key>
 	<true/>
+	<key>NSUserNotificationAlertStyle</key>
+	<string>alert</string>
 	<key>SUFeedURL</key>
 	<string>https://raw.githubusercontent.com/esoxjem/Mizu/main/appcast.xml</string>
 	<key>SUPublicEDKey</key>
