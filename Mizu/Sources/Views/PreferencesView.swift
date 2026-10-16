@@ -109,7 +109,7 @@ struct PreferencesView: View {
                 .font(Typography.footer)
 
             if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
-                Text("Version \(version)")
+                Text("v\(version)")
                     .font(Typography.footerVersion)
             }
         }
