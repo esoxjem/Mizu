@@ -7,21 +7,16 @@ final class MenuBarController {
     private let statusItem: NSStatusItem
     private let popover = NSPopover()
     private let settings = AppSettings.shared
-    private let reminderService = ReminderService()
-    private let updateState = UpdateAvailabilityState.shared
+    private let updaterService = UpdaterService.shared
     private var clickOutsideMonitor: Any?
     private var updateStateCancellable: AnyCancellable?
-    private var sleepObserver: NSObjectProtocol?
-    private var wakeObserver: NSObjectProtocol?
 
     init() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         configureStatusBarButton()
         configurePopover()
         monitorClicksOutsidePopover()
-        startReminder()
         observeUpdateAvailability()
-        observeSleepWakeEvents()
     }
 
     private func configureStatusBarButton() {
@@ -32,10 +27,7 @@ final class MenuBarController {
     }
 
     private func configurePopover() {
-        popover.contentViewController = PreferencesHostingController(
-            settings: settings,
-            onIntervalChanged: { [weak self] in self?.resetReminder() }
-        )
+        popover.contentViewController = PreferencesHostingController(settings: settings)
         popover.behavior = .transient
     }
 
@@ -62,6 +54,7 @@ final class MenuBarController {
     }
 
     private func showPopover(relativeTo button: NSStatusBarButton) {
+        LaunchAtLoginService.shared.refresh()
         popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
         makePopoverKeyWindow()
     }
@@ -70,61 +63,12 @@ final class MenuBarController {
         popover.contentViewController?.view.window?.makeKeyAndOrderFront(nil)
     }
 
-    private func startReminder() {
-        Task {
-            await reminderService.startReminder(
-                interval: settings.selectedInterval,
-                soundEnabled: settings.isSoundEnabled
-            )
-        }
-    }
-
-    private func resetReminder() {
-        Task {
-            await reminderService.resetReminder(
-                interval: settings.selectedInterval,
-                soundEnabled: settings.isSoundEnabled
-            )
-        }
-    }
-
     private func observeUpdateAvailability() {
-        updateStateCancellable = updateState.$isUpdateAvailable
+        updateStateCancellable = updaterService.$updateAvailabilityState
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] isAvailable in
-                self?.updateBadgeVisibility(showBadge: isAvailable)
+            .sink { [weak self] state in
+                self?.updateBadgeVisibility(showBadge: state.isUpdateAvailable)
             }
-    }
-
-    private func observeSleepWakeEvents() {
-        sleepObserver = NSWorkspace.shared.notificationCenter.addObserver(
-            forName: NSWorkspace.willSleepNotification,
-            object: nil,
-            queue: .main
-        ) { [weak self] _ in
-            self?.handleSystemSleep()
-        }
-
-        wakeObserver = NSWorkspace.shared.notificationCenter.addObserver(
-            forName: NSWorkspace.didWakeNotification,
-            object: nil,
-            queue: .main
-        ) { [weak self] _ in
-            self?.handleSystemWake()
-        }
-    }
-
-    private func handleSystemSleep() {
-        Task { await reminderService.stopReminder() }
-    }
-
-    private func handleSystemWake() {
-        Task {
-            await reminderService.startReminder(
-                interval: settings.selectedInterval,
-                soundEnabled: settings.isSoundEnabled
-            )
-        }
     }
 
     private func updateBadgeVisibility(showBadge: Bool) {
@@ -170,11 +114,5 @@ final class MenuBarController {
             NSEvent.removeMonitor(monitor)
         }
         updateStateCancellable?.cancel()
-        if let sleepObserver {
-            NSWorkspace.shared.notificationCenter.removeObserver(sleepObserver)
-        }
-        if let wakeObserver {
-            NSWorkspace.shared.notificationCenter.removeObserver(wakeObserver)
-        }
     }
 }

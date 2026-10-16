@@ -4,14 +4,18 @@ import os.log
 
 final class GentleUpdateReminderDelegate: NSObject, SPUStandardUserDriverDelegate {
     private let logger = Logger(subsystem: "com.esoxjem.mizu", category: "GentleUpdateReminder")
-    private let updateState: UpdateAvailabilityState
-    private let notificationActor: NotificationActor
+    private let notifyUpdate: (String) async -> Void
+    @MainActor var onUpdateAvailable: ((String) -> Void)?
+    @MainActor var onSessionFinished: (() -> Void)?
 
     var supportsGentleScheduledUpdateReminders: Bool { true }
 
-    init(updateState: UpdateAvailabilityState, notificationActor: NotificationActor) {
-        self.updateState = updateState
-        self.notificationActor = notificationActor
+    init(
+        notifyUpdate: @escaping (String) async -> Void = { version in
+            await NotificationActor.shared.deliverUpdateAvailableNotification(version: version)
+        }
+    ) {
+        self.notifyUpdate = notifyUpdate
         super.init()
     }
 
@@ -37,11 +41,11 @@ final class GentleUpdateReminderDelegate: NSObject, SPUStandardUserDriverDelegat
         logger.info("Showing gentle reminder for version \(update.displayVersionString)")
 
         Task { @MainActor in
-            updateState.setUpdateAvailable(version: update.displayVersionString)
+            onUpdateAvailable?(update.displayVersionString)
         }
 
         Task {
-            await notificationActor.deliverUpdateAvailableNotification(version: update.displayVersionString)
+            await notifyUpdate(update.displayVersionString)
         }
     }
 
@@ -52,7 +56,7 @@ final class GentleUpdateReminderDelegate: NSObject, SPUStandardUserDriverDelegat
     func standardUserDriverWillFinishUpdateSession() {
         logger.info("Update session finishing, clearing state")
         Task { @MainActor in
-            updateState.clearPendingUpdate()
+            onSessionFinished?()
         }
     }
 }

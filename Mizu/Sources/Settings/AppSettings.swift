@@ -1,41 +1,23 @@
 import Foundation
-import SwiftUI
+import Combine
 
 @MainActor
 final class AppSettings: ObservableObject {
     static let shared = AppSettings()
 
-    @AppStorage("interval") var intervalRawValue: Int = ReminderInterval.oneHour.rawValue
-    @AppStorage("sound") var isSoundEnabled: Bool = true
-    @AppStorage("hasRequestedNotificationPermission") var hasRequestedPermission: Bool = false
+    private let defaults: UserDefaults
 
-    @AppStorage("startup") var isLaunchAtLoginEnabled: Bool = false {
-        didSet { syncLaunchAtLoginState() }
+    @Published var selectedInterval: ReminderInterval {
+        didSet { defaults.set(selectedInterval.rawValue, forKey: "interval") }
+    }
+    @Published var isSoundEnabled: Bool {
+        didSet { defaults.set(isSoundEnabled, forKey: "sound") }
     }
 
-    @AppStorage("automaticallyCheckForUpdates") var isAutoUpdateEnabled: Bool = true {
-        didSet { syncAutoUpdateState() }
-    }
-
-    var selectedInterval: ReminderInterval {
-        get { ReminderInterval(rawValue: intervalRawValue) ?? .oneHour }
-        set { intervalRawValue = newValue.rawValue }
-    }
-
-    private init() {
-        syncLaunchAtLoginState()
-        syncAutoUpdateState()
-    }
-
-    private func syncLaunchAtLoginState() {
-        if isLaunchAtLoginEnabled {
-            LaunchAtLoginService.shared.enable()
-        } else {
-            LaunchAtLoginService.shared.disable()
-        }
-    }
-
-    private func syncAutoUpdateState() {
-        UpdaterService.shared.automaticallyChecksForUpdates = isAutoUpdateEnabled
+    init(defaults: UserDefaults = .standard) {
+        self.defaults = defaults
+        let rawInterval = defaults.object(forKey: "interval") as? Int ?? ReminderInterval.oneHour.rawValue
+        selectedInterval = ReminderInterval(rawValue: rawInterval) ?? .oneHour
+        isSoundEnabled = defaults.object(forKey: "sound") as? Bool ?? true
     }
 }

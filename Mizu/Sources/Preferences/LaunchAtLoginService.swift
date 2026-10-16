@@ -1,52 +1,51 @@
 import Foundation
+import Combine
 import ServiceManagement
 import OSLog
 
-/// Service managing launch-at-login functionality using native SMAppService.
-///
-/// Uses the modern SMAppService API (macOS 13+) to register the app as a login item.
-/// This replaces the need for external dependencies like LaunchAtLogin.
 @MainActor
-final class LaunchAtLoginService {
+final class LaunchAtLoginService: ObservableObject {
     static let shared = LaunchAtLoginService()
 
     private let logger = Logger(subsystem: "com.esoxjem.mizu", category: "LaunchAtLogin")
-    private let service = SMAppService.mainApp
+    private let readStatus: () -> SMAppService.Status
+    private let register: () throws -> Void
+    private let unregister: () throws -> Void
+    @Published private(set) var status: SMAppService.Status
 
-    private init() {}
+    init(
+        readStatus: @escaping () -> SMAppService.Status = { SMAppService.mainApp.status },
+        register: @escaping () throws -> Void = { try SMAppService.mainApp.register() },
+        unregister: @escaping () throws -> Void = { try SMAppService.mainApp.unregister() }
+    ) {
+        self.readStatus = readStatus
+        self.register = register
+        self.unregister = unregister
+        status = readStatus()
+    }
 
     /// Whether launch at login is currently enabled
     var isEnabled: Bool {
-        service.status == .enabled
+        get { status == .enabled }
+        set {
+            refresh()
+            defer { refresh() }
+            do {
+                switch (status, newValue) {
+                case (.enabled, true), (.notRegistered, false), (.notFound, false):
+                    break
+                case (_, true):
+                    try register()
+                case (_, false):
+                    try unregister()
+                }
+            } catch {
+                logger.error("Failed to change launch at login: \(error.localizedDescription)")
+            }
+        }
     }
 
-    /// Enable launch at login
-    func enable() {
-        guard service.status != .enabled else {
-            logger.info("Launch at login already enabled")
-            return
-        }
-
-        do {
-            try service.register()
-            logger.info("Successfully registered launch at login")
-        } catch {
-            logger.error("Failed to register launch at login: \(error.localizedDescription)")
-        }
-    }
-
-    /// Disable launch at login
-    func disable() {
-        guard service.status == .enabled else {
-            logger.info("Launch at login already disabled")
-            return
-        }
-
-        do {
-            try service.unregister()
-            logger.info("Successfully unregistered launch at login")
-        } catch {
-            logger.error("Failed to unregister launch at login: \(error.localizedDescription)")
-        }
+    func refresh() {
+        status = readStatus()
     }
 }

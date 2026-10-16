@@ -3,8 +3,8 @@ import AppKit
 
 struct PreferencesView: View {
     @ObservedObject var settings: AppSettings
+    @ObservedObject private var launchAtLoginService = LaunchAtLoginService.shared
     @ObservedObject private var updaterService = UpdaterService.shared
-    var onIntervalChanged: (() -> Void)?
 
     private let actions = PreferencesActions.shared
 
@@ -16,7 +16,7 @@ struct PreferencesView: View {
             sectionDivider
             settingToggle(label: "Play Sound", isOn: $settings.isSoundEnabled)
             sectionDivider
-            settingToggle(label: "Launch on startup", isOn: $settings.isLaunchAtLoginEnabled)
+            settingToggle(label: "Launch on startup", isOn: $launchAtLoginService.isEnabled)
             Spacer()
             footerText
         }
@@ -59,10 +59,11 @@ struct PreferencesView: View {
 
     private var intervalBinding: Binding<Double> {
         Binding(
-            get: { Double(settings.intervalRawValue) },
+            get: { Double(settings.selectedInterval.rawValue) },
             set: { newValue in
-                settings.intervalRawValue = Int(newValue)
-                onIntervalChanged?()
+                if let interval = ReminderInterval(rawValue: Int(newValue)) {
+                    settings.selectedInterval = interval
+                }
             }
         )
     }

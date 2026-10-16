@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A10000000000000000000001 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 60365C002EEA000000000002 /* Sparkle */; };
 		60382F58297B146600F893C5 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60382F57297B146500F893C5 /* ServiceManagement.framework */; };
 		6073DEB92EEAA5D00053229C /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 60365C002EEA000000000002 /* Sparkle */; };
 		60FDBDEF23A92B7A007F7C29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60FDBDEE23A92B7A007F7C29 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A10000000000000000000002 /* MizuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = MizuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		60365B162EE9B3DA00B4D025 /* CLAUDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CLAUDE.md; sourceTree = "<group>"; };
 		60365BD62EE9D14E00B4D025 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		60382F57297B146500F893C5 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
@@ -23,14 +25,24 @@
 		60FDBDF423A92B7A007F7C29 /* Mizu.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mizu.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		A10000000000000000000003 /* App entry points excluded from tests */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (AppDelegate.swift, MizuApp.swift,);
+			target = A10000000000000000000004 /* MizuTests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		60365B272EE9B3E500B4D025 /* Sources */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Sources; sourceTree = "<group>"; };
+		A10000000000000000000005 /* MizuTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = MizuTests; sourceTree = "<group>"; };
+		60365B272EE9B3E500B4D025 /* Sources */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (A10000000000000000000003,); explicitFileTypes = {}; explicitFolders = (); path = Sources; sourceTree = "<group>"; };
 		60365BAD2EE9CBCC00B4D025 /* .claude */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = .claude; sourceTree = "<group>"; };
 		60365BB22EE9CBCC00B4D025 /* .github */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = .github; sourceTree = "<group>"; };
 		60365BF12EE9D64700B4D025 /* Assets */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Assets; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A10000000000000000000006 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (A10000000000000000000001,); runOnlyForDeploymentPostprocessing = 0; };
 		60FDBDE423A92B79007F7C29 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -71,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				6073DEE22EEABEA50053229C /* appcast.xml */,
+				A10000000000000000000005 /* MizuTests */,
 				60365BF12EE9D64700B4D025 /* Assets */,
 				60365BD62EE9D14E00B4D025 /* README.md */,
 				60365BAD2EE9CBCC00B4D025 /* .claude */,
@@ -86,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				60FDBDE723A92B79007F7C29 /* Mizu.app */,
+				A10000000000000000000002 /* MizuTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -104,6 +118,19 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A10000000000000000000004 /* MizuTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A10000000000000000000007;
+			buildPhases = (A10000000000000000000008, A10000000000000000000006,);
+			buildRules = ();
+			dependencies = ();
+			fileSystemSynchronizedGroups = (60365B272EE9B3E500B4D025, A10000000000000000000005,);
+			name = MizuTests;
+			packageProductDependencies = (60365C002EEA000000000002,);
+			productName = MizuTests;
+			productReference = A10000000000000000000002;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		60FDBDE623A92B79007F7C29 /* Mizu */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 60FDBDF723A92B7A007F7C29 /* Build configuration list for PBXNativeTarget "Mizu" */;
@@ -160,6 +187,7 @@
 			projectRoot = "";
 			targets = (
 				60FDBDE623A92B79007F7C29 /* Mizu */,
+				A10000000000000000000004 /* MizuTests */,
 			);
 		};
 /* End PBXProject section */
@@ -176,6 +204,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A10000000000000000000008 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
 		60FDBDE323A92B79007F7C29 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -186,6 +215,30 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		A10000000000000000000009 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@loader_path/../Frameworks", "@loader_path/Frameworks",);
+				PRODUCT_BUNDLE_IDENTIFIER = com.esoxjem.mizu.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A1000000000000000000000A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@loader_path/../Frameworks", "@loader_path/Frameworks",);
+				PRODUCT_BUNDLE_IDENTIFIER = com.esoxjem.mizu.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		60FDBDF523A92B7A007F7C29 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -368,6 +421,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A10000000000000000000007 /* Build configuration list for MizuTests */ = {isa = XCConfigurationList; buildConfigurations = (A10000000000000000000009, A1000000000000000000000A,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
 		60FDBDE223A92B79007F7C29 /* Build configuration list for PBXProject "Mizu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

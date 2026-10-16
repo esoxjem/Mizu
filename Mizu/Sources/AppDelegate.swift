@@ -1,7 +1,9 @@
 import Cocoa
 
+@MainActor
 final class AppDelegate: NSObject, NSApplicationDelegate {
     private var menuBarController: MenuBarController?
+    private var reminderService: ReminderService?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         setupNotificationDelegate()
@@ -26,6 +28,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     @MainActor
     private func initializeMenuBar() {
+        _ = UpdaterService.shared
+        let reminderService = ReminderService(settings: .shared)
+        self.reminderService = reminderService
+        reminderService.start()
         menuBarController = MenuBarController()
+    }
+
+    func applicationWillTerminate(_ notification: Notification) {
+        reminderService?.stop()
     }
 }

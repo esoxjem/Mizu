@@ -1,22 +1,11 @@
-import Foundation
-import Sparkle
+enum UpdateAvailabilityState: Equatable {
+    case idle
+    case available(version: String)
 
-@MainActor
-final class UpdateAvailabilityState: ObservableObject {
-    static let shared = UpdateAvailabilityState()
+    var isUpdateAvailable: Bool { availableVersion != nil }
 
-    @Published private(set) var isUpdateAvailable = false
-    @Published private(set) var availableVersion: String?
-
-    private init() {}
-
-    func setUpdateAvailable(version: String) {
-        isUpdateAvailable = true
-        availableVersion = version
-    }
-
-    func clearPendingUpdate() {
-        isUpdateAvailable = false
-        availableVersion = nil
+    var availableVersion: String? {
+        if case .available(let version) = self { return version }
+        return nil
     }
 }

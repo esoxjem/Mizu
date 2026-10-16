@@ -5,12 +5,8 @@ import SwiftUI
 /// Bridges SwiftUI into the AppKit popover system.
 final class PreferencesHostingController: NSHostingController<PreferencesView> {
 
-    /// Creates a hosting controller with the given settings and callback.
-    /// - Parameters:
-    ///   - settings: The AppSettings instance to bind to the view
-    ///   - onIntervalChanged: Callback when the interval slider changes
-    convenience init(settings: AppSettings, onIntervalChanged: @escaping () -> Void) {
-        let view = PreferencesView(settings: settings, onIntervalChanged: onIntervalChanged)
+    convenience init(settings: AppSettings) {
+        let view = PreferencesView(settings: settings)
         self.init(rootView: view)
     }
 

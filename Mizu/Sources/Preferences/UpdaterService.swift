@@ -37,35 +37,46 @@ final class UpdaterService: ObservableObject {
 
     @Published private(set) var canCheckForUpdates = false
 
-    let updateAvailabilityState = UpdateAvailabilityState.shared
+    @Published private(set) var updateAvailabilityState = UpdateAvailabilityState.idle
 
     private let updaterController: SPUStandardUpdaterController
     private let updaterDelegate = UpdaterDelegate()
     private let gentleReminderDelegate: GentleUpdateReminderDelegate
-    private var cancellable: AnyCancellable?
 
-    private init() {
-        gentleReminderDelegate = GentleUpdateReminderDelegate(
-            updateState: UpdateAvailabilityState.shared,
-            notificationActor: NotificationActor.shared
-        )
+    init(startingUpdater: Bool = true) {
+        gentleReminderDelegate = GentleUpdateReminderDelegate()
 
         updaterController = SPUStandardUpdaterController(
-            startingUpdater: true,
+            startingUpdater: false,
             updaterDelegate: updaterDelegate,
             userDriverDelegate: gentleReminderDelegate
         )
+        gentleReminderDelegate.onUpdateAvailable = { [weak self] version in
+            self?.updateAvailable(version: version)
+        }
+        gentleReminderDelegate.onSessionFinished = { [weak self] in
+            self?.updateSessionFinished()
+        }
         bindCanCheckForUpdates()
+        if startingUpdater { updaterController.startUpdater() }
     }
 
     private func bindCanCheckForUpdates() {
-        cancellable = updaterController.updater.publisher(for: \.canCheckForUpdates)
+        updaterController.updater.publisher(for: \.canCheckForUpdates)
             .receive(on: DispatchQueue.main)
-            .assign(to: \.canCheckForUpdates, on: self)
+            .assign(to: &$canCheckForUpdates)
     }
 
     func checkForUpdates() {
         updaterController.checkForUpdates(nil)
+    }
+
+    func updateAvailable(version: String) {
+        updateAvailabilityState = .available(version: version)
+    }
+
+    func updateSessionFinished() {
+        updateAvailabilityState = .idle
     }
 
     func installPendingUpdate() {
