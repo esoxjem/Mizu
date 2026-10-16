@@ -3,7 +3,7 @@
    <BuildAction parallelizeBuildables="YES" buildImplicitDependencies="YES">
       <BuildActionEntries>
          <BuildActionEntry buildForTesting="YES" buildForRunning="YES" buildForProfiling="YES" buildForArchiving="YES" buildForAnalyzing="YES">
-            <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="60FDBDE623A92B79007F7C29" BuildableName="Mizu.app" BlueprintName="Mizu" ReferencedContainer="container:Mizu.xcodeproj"/>
+            <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="60FDBDE623A92B79007F7C29" BuildableName="Mizu Dev.app" BlueprintName="Mizu" ReferencedContainer="container:Mizu.xcodeproj"/>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
@@ -16,7 +16,7 @@
    </TestAction>
    <LaunchAction buildConfiguration="Debug" selectedDebuggerIdentifier="Xcode.DebuggerFoundation.Debugger.LLDB" selectedLauncherIdentifier="Xcode.IDEFoundation.Launcher.LLDB" launchStyle="0" useCustomWorkingDirectory="NO" ignoresPersistentStateOnLaunch="NO" debugDocumentVersioning="YES" debugServiceExtension="internal" allowLocationSimulation="YES">
       <BuildableProductRunnable runnableDebuggingMode="0">
-         <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="60FDBDE623A92B79007F7C29" BuildableName="Mizu.app" BlueprintName="Mizu" ReferencedContainer="container:Mizu.xcodeproj"/>
+         <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="60FDBDE623A92B79007F7C29" BuildableName="Mizu Dev.app" BlueprintName="Mizu" ReferencedContainer="container:Mizu.xcodeproj"/>
       </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction buildConfiguration="Release" shouldUseLaunchSchemeArgsEnv="YES" savedToolIdentifier="" useCustomWorkingDirectory="NO" debugDocumentVersioning="YES">

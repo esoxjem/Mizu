@@ -33,18 +33,26 @@ final class UpdaterDelegate: NSObject, SPUUpdaterDelegate {
 
 @MainActor
 final class UpdaterService: ObservableObject {
+    #if DEBUG
+    static let shared = UpdaterService(updatesEnabled: false)
+    #else
     static let shared = UpdaterService()
+    #endif
 
     @Published private(set) var canCheckForUpdates = false
 
     @Published private(set) var updateAvailabilityState = UpdateAvailabilityState.idle
 
-    private let updaterController: SPUStandardUpdaterController
+    private let updaterController: SPUStandardUpdaterController?
     private let updaterDelegate = UpdaterDelegate()
     private let gentleReminderDelegate: GentleUpdateReminderDelegate
 
-    init(startingUpdater: Bool = true) {
+    init(startingUpdater: Bool = true, updatesEnabled: Bool = true) {
         gentleReminderDelegate = GentleUpdateReminderDelegate()
+        guard updatesEnabled else {
+            updaterController = nil
+            return
+        }
 
         updaterController = SPUStandardUpdaterController(
             startingUpdater: false,
@@ -58,17 +66,18 @@ final class UpdaterService: ObservableObject {
             self?.updateSessionFinished()
         }
         bindCanCheckForUpdates()
-        if startingUpdater { updaterController.startUpdater() }
+        if startingUpdater { updaterController?.startUpdater() }
     }
 
     private func bindCanCheckForUpdates() {
+        guard let updaterController else { return }
         updaterController.updater.publisher(for: \.canCheckForUpdates)
             .receive(on: DispatchQueue.main)
             .assign(to: &$canCheckForUpdates)
     }
 
     func checkForUpdates() {
-        updaterController.checkForUpdates(nil)
+        updaterController?.checkForUpdates(nil)
     }
 
     func updateAvailable(version: String) {
@@ -80,11 +89,11 @@ final class UpdaterService: ObservableObject {
     }
 
     func installPendingUpdate() {
-        updaterController.checkForUpdates(nil)
+        updaterController?.checkForUpdates(nil)
     }
 
     var automaticallyChecksForUpdates: Bool {
-        get { updaterController.updater.automaticallyChecksForUpdates }
-        set { updaterController.updater.automaticallyChecksForUpdates = newValue }
+        get { updaterController?.updater.automaticallyChecksForUpdates ?? false }
+        set { updaterController?.updater.automaticallyChecksForUpdates = newValue }
     }
 }

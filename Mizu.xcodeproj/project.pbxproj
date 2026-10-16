@@ -378,15 +378,15 @@
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				INFOPLIST_FILE = Mizu/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Mizu;
+				INFOPLIST_KEY_CFBundleDisplayName = "Mizu Dev";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 2.4.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.esoxjem.mizu;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.esoxjem.mizu.dev;
+				PRODUCT_NAME = "Mizu Dev";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;

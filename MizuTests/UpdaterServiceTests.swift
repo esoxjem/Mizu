@@ -3,6 +3,18 @@ import XCTest
 
 @MainActor
 final class UpdaterServiceTests: XCTestCase {
+    func testDisabledUpdaterCannotEnableProductionUpdates() {
+        let key = "SUEnableAutomaticChecks"
+        let originalValue = UserDefaults.standard.object(forKey: key)
+        defer { UserDefaults.standard.set(originalValue, forKey: key) }
+        let service = UpdaterService(startingUpdater: false, updatesEnabled: false)
+
+        service.automaticallyChecksForUpdates = true
+
+        XCTAssertFalse(service.automaticallyChecksForUpdates)
+        XCTAssertFalse(service.canCheckForUpdates)
+    }
+
     func testFinishingUpdateSessionPublishesIdleWithoutStaleVersion() {
         let service = UpdaterService(startingUpdater: false)
         var states: [UpdateAvailabilityState] = []

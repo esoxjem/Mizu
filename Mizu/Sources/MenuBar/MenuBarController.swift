@@ -22,6 +22,12 @@ final class MenuBarController {
     private func configureStatusBarButton() {
         guard let button = statusItem.button else { return }
         button.image = NSImage(named: NSImage.Name("StatusBarImage"))
+        button.toolTip = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String
+        #if DEBUG
+        statusItem.length = NSStatusItem.variableLength
+        button.title = "Dev"
+        button.imagePosition = .imageLeading
+        #endif
         button.action = #selector(togglePopover)
         button.target = self
     }

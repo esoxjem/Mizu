@@ -7,6 +7,7 @@ struct PreferencesView: View {
     @ObservedObject private var updaterService = UpdaterService.shared
 
     private let actions = PreferencesActions.shared
+    private let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ?? "Mizu"
 
     var body: some View {
         VStack(spacing: 0) {
@@ -34,7 +35,7 @@ struct PreferencesView: View {
                 .resizable()
                 .frame(width: 48, height: 48)
 
-            Text("mizu")
+            Text(appName.lowercased())
                 .font(Typography.title)
         }
         .padding(.top, 24)
@@ -103,9 +104,16 @@ struct PreferencesView: View {
     }
 
     private var footerText: some View {
-        Text("Made with ❤️ in Berlin")
-            .font(Typography.footer)
-            .padding(.bottom, 32)
+        VStack(spacing: 8) {
+            Text("Made with ❤️ in Berlin")
+                .font(Typography.footer)
+
+            if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
+                Text("Version \(version)")
+                    .font(Typography.footerVersion)
+            }
+        }
+        .padding(.bottom, 32)
     }
 
     private var settingsMenu: some View {
@@ -122,7 +130,7 @@ struct PreferencesView: View {
             Button("@ES0XJEM", action: actions.openTwitter)
             Button("GitHub", action: actions.openGitHub)
             Divider()
-            Button("Quit Mizu", action: actions.quitApplication)
+            Button("Quit \(appName)", action: actions.quitApplication)
         } label: {
             settingsMenuIcon
         }
@@ -164,6 +172,7 @@ private enum Typography {
     static let body = avenirFont(weight: "Medium", size: 13)
     static let caption = avenirFont(weight: "Regular", size: 10)
     static let footer = avenirFont(weight: "UltraLight", size: 13)
+    static let footerVersion = avenirFont(weight: "UltraLight", size: 10)
 
     private static func avenirFont(weight: String, size: CGFloat) -> Font {
         Font(NSFont(name: "AvenirNext-\(weight)", size: size)!)
