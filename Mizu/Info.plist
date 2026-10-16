@@ -35,7 +35,7 @@
 	<key>SUFeedURL</key>
 	<string>https://raw.githubusercontent.com/esoxjem/Mizu/main/appcast.xml</string>
 	<key>SUPublicEDKey</key>
-	<string>xkW7zLzGFcZcHpOGETA3WLA+5SkTfRGUJvGjGIJsBFI=</string>
+	<string>OUhXmKzMt07o+XX7AXRe1/qtxhog0Ljy4TTFUHLuOCU=</string>
 	<key>SUEnableInstallerLauncherService</key>
 	<true/>
 </dict>
