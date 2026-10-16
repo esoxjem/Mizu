@@ -2,7 +2,7 @@
 
 Mizu is released locally as a Developer ID signed, notarized app. GitHub Releases
 hosts both `Mizu.zip` and `Mizu.dmg`; Sparkle downloads the DMG referenced by
-`appcast.xml` on `main`. This workflow was verified for v2.4.2 (build 8).
+`appcast.xml` on `main`. This workflow was verified for v2.5.1 (build 10).
 
 Run commands from the repository root, in order. Replace the version placeholder
 and use a fresh release directory; retain it until publication is verified.
@@ -199,6 +199,24 @@ Retain the source/release commit IDs, notarization submission IDs, hashes, and
 Sparkle signatures with the release records. Clean up only this release's
 workspace after verification; do not remove the entire `build/` directory or
 push unrelated tags.
+
+## 7. Refresh the local development app
+
+Finish every successful local release by rebuilding and refreshing Mizu Dev:
+
+```bash
+python3 scripts/refresh_dev_app.py
+```
+
+The script builds Debug from the current checkout, verifies its signature and
+development bundle identifier, then replaces and relaunches
+`~/Applications/Mizu Dev.app`. It closes running dev copies, including ones
+launched from Xcode, and opens the refreshed installation. It checks that the
+installed version and build match the new build. Production remains separate.
+
+Confirm the reported version/build match the release and include the dev refresh
+result in the release summary. If this step fails, the public release is already
+published: resolve the local failure and rerun this command without republishing.
 
 ## Sparkle key rotation
 

@@ -12,4 +12,6 @@ release notes from the changes, honoring any notes provided by the user.
 Inspect the worktree, preserve unrelated changes, and stage only intended release
 files. Use conventional commits and push only the intended tag. Publish and
 verify the assets before pushing the updated feed to `main`. Keep release
-records and report the published version, release URL, and verification results.
+records. After public verification, always run `python3 scripts/refresh_dev_app.py`
+as the guide's final step so the installed dev app matches the release. Report
+the published version, release URL, verification results, and dev refresh result.

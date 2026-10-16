@@ -9,14 +9,14 @@ registration. A **Dev** label in the menu bar identifies the development app;
 production updates are disabled in this variant.
 
 In Xcode, run the `Mizu` scheme with the Debug configuration, or build and launch
-from the command line:
+and refresh the installed dev app from the command line:
 
 ```bash
-xcodebuild -project Mizu.xcodeproj -scheme Mizu -configuration Debug -derivedDataPath build/dev build
-open "build/dev/Build/Products/Debug/Mizu Dev.app"
+python3 scripts/refresh_dev_app.py
 ```
 
-Quit Mizu Dev before relaunching a rebuilt copy from the command line.
+This rebuilds, replaces, and restarts `~/Applications/Mizu Dev.app`. The local
+release process runs the same command after each verified release.
 
 Release builds and archives remain **Mizu** (`com.esoxjem.mizu`). Follow the
 [release process](docs/RELEASE.md) for distribution.
@@ -29,3 +29,9 @@ xcodebuild -project Mizu.xcodeproj -scheme Mizu -destination 'platform=macOS' te
 
 The hostless test target compiles the production sources without the app entry points.
 Reminder tests advance a manual clock; they never wait for real reminder intervals.
+
+Test the local dev refresh script with:
+
+```bash
+python3 -m unittest discover -s scripts/tests -v
+```
